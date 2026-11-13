@@ -1,5 +1,5 @@
-401SPAG Noncommercial Software License 1.0
-Identifier: LicenseRef-401SPAG-NC-ND-1.0
+401SPAG Noncommercial Software License 1.1
+Identifier: LicenseRef-401SPAG-NC-ND-1.1
 Publication date: 2026-11-14
 
 Copyright (c) 2026 D. JEONG and the respective contributors.
@@ -14,12 +14,20 @@ authorized representative (the "Licensor") may grant. The recipient is "You".
 examples, configuration, and machine-readable templates.
 
 This license is a new permission, not a revocation of an earlier permission.
-Rights already granted under CC BY 4.0 or another license remain available
-under that license for the material to which they apply, including when that
+Rights already granted under version 1.0, CC BY 4.0, or another license
+remain available under that license for the material to which they apply,
+including when that
 material is present in a later version. The historical baseline and file
 inventory are identified in docs/LICENSING-TRANSITION.ko.md. A new version
 number, notice, or repository location does not remove those rights.
 Third-party material remains subject to its own notices and permissions.
+
+Rights independently granted through applicable hosting-platform terms,
+including GitHub's terms, are not withdrawn or narrowed by this license.
+This sentence creates no additional rights beyond those independent grants.
+The publisher name 401SPAG is not, by itself, an identification of a legal
+entity or an assignment of copyright. A separate permission must identify
+the actual rights holder or authorized representative and its authority.
 
 2. Definitions
 
@@ -29,6 +37,13 @@ in paid products or services, commercial SaaS, paid customer delivery, or
 the operation of a business for commercial advantage, even when no fee is
 charged specifically for the Software. An organization's nonprofit or
 for-profit status alone does not determine the purpose of a use.
+Activities directed toward commercial advantage include business adoption
+pilots, product evaluations for business use, customer proof of concept
+work, and internal production use. Describing those activities as research,
+experimental, internal, or free does not make them Noncommercial.
+Personal study or research qualifies only when its actual purpose meets
+the Noncommercial definition. A mixed-purpose use is assessed by its
+primary purpose; a noncommercial component does not exempt commercial use.
 
 "Modified Software" means a translation, alteration, adaptation, or other
 derivative of the Software requiring the Licensor's copyright permission.
@@ -38,10 +53,19 @@ itself, a modification for this license.
 
 "Distribute" means provide copies or make the Software available to anyone
 outside You or, if You are an organization, outside that same legal entity.
-Access by that entity's personnel solely for its authorized internal use
-and under its control is internal use. Affiliates and customers are separate
-recipients. Merely producing output containing none of the Software's
-protected expression is not distribution of the Software.
+Access by that entity's employees and officers solely on its behalf, for
+its authorized internal use and under its control, is internal use.
+Affiliates, independent contractors, and customers are separate recipients;
+being under common control or a confidentiality agreement alone does not
+make their use internal. Any separate permission or platform grant under
+section 1 remains available.
+
+Making Software available means making its protected source, binary, or
+other expressive content available, not merely exposing functionality.
+Output, input data, facts, and independently written configuration that do
+not reproduce protected Software expression are not Software merely
+because the Software produces, reads, or validates them. Copying protected
+template expression into an output does not remove its applicable license.
 
 3. Limited permission
 
@@ -51,40 +75,67 @@ nonexclusive, royalty-free copyright license for the copyright term to:
 (a) inspect, copy, run, and study the Software for Noncommercial purposes;
 (b) make and use Modified Software privately for Noncommercial purposes;
 (c) Distribute unmodified Software for Noncommercial purposes, preserving
-    copyright and attribution notices and providing LICENSE-CODE,
-    LICENSING.md, and the applicable historical and third-party notices.
+    copyright and attribution notices and providing the LICENSE-CODE,
+    LICENSING.md, LICENSE, and CONTRIBUTING.md supplied with that revision,
+    plus applicable historical and third-party notices. Unchanged files or
+    excerpts and binaries compiled from unmodified source may be shared
+    on this basis; notices applicable to those parts must be retained.
 
 Recipients of unmodified Software receive this offer directly from the
 Licensor. You must not represent yourself as able to grant broader rights
 on the Licensor's behalf. Reasonable placement of notices with a binary
 distribution is sufficient; notices need not be displayed on every screen.
+These permissions are not revocable while You comply with this version,
+subject to section 7 and rights that cannot lawfully be limited.
 
 4. Restrictions and separate permission
 
-Except for section 5, this license does not authorize commercial use or
-distribution of the Software, or distribution of Modified Software, whether
-in source or binary form and whether or not a fee is charged. Offering
-remote access to Software functionality for commercial advantage requires
-separate permission even if no copy is distributed.
+Subject to independent permissions in section 1, statutory rights in
+section 6, and the contribution exception in section 5, this license does
+not authorize either of the following:
 
-For a use outside section 3, obtain a separate written license from a party
-authorized to grant the necessary rights. Contact mail@401spag.com. This
+(a) use of the Software for commercial purposes, or Distribution of the
+    Software for commercial purposes;
+(b) Distribution of Modified Software, whether in source or binary form
+    and whether or not a fee is charged.
+
+This section does not prohibit the Noncommercial Distribution of
+unmodified Software expressly permitted by section 3(c). Remote operation
+for commercial purposes, including commercial SaaS, requires separate
+permission even if recipients receive no copy. Absence of Distribution
+does not, by itself, authorize a use outside the grants in section 3;
+Modified Software is licensed there only for private Noncommercial use.
+
+For a use not otherwise authorized, obtain a separate written license from
+a party authorized to grant the necessary rights. Contact mail@401spag.com. This
 license does not promise that a separate license will be available.
 
 5. Limited official contribution permission
 
-You may prepare and share modifications, patches, review branches, and
-forks solely to propose, review, test, and integrate a contribution into
-https://github.com/401SPAG/trace-gate-framework, following CONTRIBUTING.md.
+You and other review participants may copy, run, modify, and share the
+existing Software in patches, review branches, and forks solely to propose,
+review, test, and integrate a contribution into
+https://github.com/401SPAG/trace-gate-framework. This permission covers
+only rights the Licensor can grant in the existing Software. It is not
+conditional on a later version of CONTRIBUTING.md.
 This permission applies even if the contribution activity is sponsored by
-a commercial organization. It does not authorize a competing distribution,
-customer delivery, commercial operation, or general distribution of a
-modified edition. Necessary review copies and the hosting platform's
-retained contribution history may remain accessible for this purpose.
+a commercial organization. It does not authorize customer delivery,
+commercial operation, or a general release of Modified Software.
+Review and test copies must be identified as unofficial
+contribution copies and retain applicable notices. Reasonable evidence of
+the contribution purpose, such as an issue, PR, or draft proposal, must be
+kept. A rejected or withdrawn proposal may remain as contribution history;
+it does not become a general release. Hosting-platform rights under
+section 1 remain independent of this limited exception.
 
-This section concerns use of the existing Software for contributions.
-Rights in a contributor's new work are granted only by the contributor's
-express agreement described in CONTRIBUTING.md, not by this section alone.
+This section concerns use of the existing Software for contributions; it
+does not itself grant rights in a contributor's new work. CONTRIBUTING.md
+requires express consent before relying on the additional review,
+integration, or sublicensing grants described there. It distinguishes the
+limited review grant from the additional integration and publication
+grant. Rights independently granted under section 1 remain available.
+A maintainer must have the necessary rights before relicensing another
+author's work.
 
 6. Rights not granted or restricted
 
@@ -125,3 +176,17 @@ continue to the extent permitted by law. No change to these terms binds
 either party without its agreement. This is a custom software license;
 it is not a Creative Commons license or an OSI-approved open-source license.
 The English text of LICENSE-CODE is the operative software license.
+
+LICENSING.md identifies the covered materials. README.md and the summaries
+in CONTRIBUTING.md and LICENSING.md explain, but do not amend, this license.
+For the existing Software, section 5 controls the contribution exception.
+For new contributions, an expressly accepted, identified contribution
+agreement controls the rights that contributor grants. For documentation,
+the unmodified CC legal code and any separately granted contribution
+permission apply; this software license does not redefine CC terms.
+
+A separate agreement governs only the parties, rights, and material it
+identifies and cannot revoke an independent grant by another rights holder.
+No later repository edit or license version automatically changes an
+accepted grant. These terms select no exclusive court or governing law;
+applicable conflict-of-laws and mandatory legal rules remain applicable.

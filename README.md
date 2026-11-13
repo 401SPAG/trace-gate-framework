@@ -95,7 +95,7 @@ AI/LLM이 문서에 접근하는 프로젝트는 TRACE-DM의 목적 기반 접�
 
 현재 TRACE core 문서 버전은 `1.1.0`입니다. TRACE-DM `0.2.0`과 TRACE-AH `0.1.0`은 각각 독립 버전을 가집니다.
 
-Python 패키지는 `2.0.0`이며 core 문서/schema 버전과 별개입니다. `2.0.0`은 [라이선스 정책 전환](docs/LICENSING-TRANSITION.ko.md)을 구별하며 `1.2.0`의 실행 로직을 유지합니다. `1.2.0`에서 도입한 실행 계약 강화는 이전 호출자에 대한 breaking change입니다. 필수 verifier, v2 checkpoint 재개 승인, evaluator `1.1.1` policy 및 context adapter metadata 이전 조건을 [구현 가이드](docs/REFERENCE-IMPLEMENTATION.ko.md)에서 확인해야 합니다. 기존 receipt/checkpoint를 새 버전으로 소급 수정하지 않습니다.
+Python 패키지는 `2.0.1`이며 core 문서/schema 버전과 별개입니다. `2.0.0`의 [라이선스 정책 전환](docs/LICENSING-TRANSITION.ko.md)과 `2.0.1`의 [코드 조건 명확화](docs/LICENSING-REVIEW-1.1.ko.md)는 `1.2.0`의 실행 로직을 유지합니다. `1.2.0`에서 도입한 실행 계약 강화는 이전 호출자에 대한 breaking change입니다. 필수 verifier, v2 checkpoint 재개 승인, evaluator `1.1.1` policy 및 context adapter metadata 이전 조건을 [구현 가이드](docs/REFERENCE-IMPLEMENTATION.ko.md)에서 확인해야 합니다. 기존 receipt/checkpoint를 새 버전으로 소급 수정하지 않습니다.
 
 선택적 TRACE-DM-MIGRATION 계약은 `0.1.0`이며 TRACE-DM `0.2.0`·core `1.1.x`와 호환된다. 기존 문서 상태 enum은 변경하지 않는다. 참조 검증/안전 해제는 실제 분산 fencing·NAS 복원·업무 재개 실행을 대신하지 않는다.
 
@@ -132,6 +132,8 @@ Copyright © 2026 D. JEONG.
 
 문서는 [CC BY-NC-ND 4.0](LICENSE)으로 제공합니다. 저작자 표시를 유지한 비상업적 원본 공유는 허용하며, 상업적 이용과 번역·각색 등 수정본 공유는 별도 허락이 필요합니다.
 
-코드와 기계 처리 템플릿·설정은 [401SPAG Noncommercial Software License 1.0](LICENSE-CODE)을 따릅니다. 비상업적 실행·연구·내부 수정과 원본 재배포를 허용하며, 상업적 이용과 수정본의 외부 배포는 제한합니다. 공식 저장소로 수정안을 제출하는 절차에는 [별도 기여 허락](CONTRIBUTING.md)이 있습니다. 이 배포를 OSI 기준의 오픈소스로 표시하지 않습니다.
+코드와 기계 처리 템플릿·설정은 [401SPAG Noncommercial Software License 1.1](LICENSE-CODE)을 따릅니다. 고지를 보존한 **비상업적 원본 재배포는 허용**하며, 상업적 이용·상업적 배포와 수정본의 외부 배포는 제한합니다. 비상업적 실행·연구·비공개 내부 수정도 허용하지만 사업 도입 검증이나 고객 PoC가 무료라는 이유만으로 비상업적 이용이 되지는 않습니다. 이 배포를 OSI 기준의 오픈소스로 표시하지 않습니다.
 
-**기존 CC BY 등으로 부여된 권한은 그대로 유지됩니다.** 신규 조건의 적용 범위, 제3자 자료·브랜드 제외 사항은 [라이선스 안내](LICENSING.md)와 [전환 기록](docs/LICENSING-TRANSITION.ko.md)을 확인하세요. 별도 상업적 이용·수정본 배포 허락 문의: **mail@401spag.com**.
+공식 저장소로의 수정안 제출·리뷰에는 [목적을 한정한 기여 예외](CONTRIBUTING.md)가 있습니다. 새 기여의 리뷰 허락과 정식 통합·배포·상업적 재허락 동의는 구분합니다. 명시적 기여 합의로 특정된 수령인이 받는 추가 권한은 일반 수신자의 이용 허락과 다릅니다.
+
+**기존 코드 1.0·CC BY 등으로 부여된 권한과 GitHub 약관상 독립적인 권한은 보존됩니다.** 공개 저장소의 열람·포크를 모두 공식 기여로 제한한다는 뜻은 아닙니다. 자료별 적용 범위와 문서 간 관계는 [라이선스 안내](LICENSING.md), [전환 기록](docs/LICENSING-TRANSITION.ko.md), [1.1 검토 결과](docs/LICENSING-REVIEW-1.1.ko.md)를 확인하세요. 별도 허락 문의: **mail@401spag.com**.

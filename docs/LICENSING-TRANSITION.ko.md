@@ -25,6 +25,12 @@
 
 이 기록의 작성만으로 독립 법률 검토·권리 귀속 감사·실제 서비스 운영 검증을 완료했다고 주장하지 않는다.
 
+## 후속 코드 1.1 명확화
+
+최초 전환은 [`4991ee4f1c2f9d472fc1e23ca5133fafe2b28826`](https://github.com/401SPAG/trace-gate-framework/commit/4991ee4f1c2f9d472fc1e23ca5133fafe2b28826)에서 반영되었다. 이를 기준으로 [1.1 검토 기록](LICENSING-REVIEW-1.1.ko.md)과 코드 라이선스 1.1을 함께 도입하는 후속 커밋부터 명확화된 새 허락을 제공한다. 패키지 버전은 `2.0.1`로 구별한다.
+
+기준 커밋의 코드 1.0과 CONTRIBUTING은 각각 [`licenses/401SPAG-NC-ND-1.0.txt`](../licenses/401SPAG-NC-ND-1.0.txt), [`licenses/CONTRIBUTING-1.0.txt`](../licenses/CONTRIBUTING-1.0.txt)에 원문 그대로 보존한다. 이미 유효하게 부여된 1.0의 권한과 실제로 체결된 기여 합의를 후속 파일 편집만으로 바꾸지 않는다. 최초 CC BY 기준 파일 목록과 기존 배포 이력도 유지한다.
+
 ## 근거
 
 - [CC BY-NC-ND 4.0 공식 법률문](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.en): 비상업적 원본 공유와 비공개 개작, 개작물 공유 제한, 예외 및 권리 범위.
