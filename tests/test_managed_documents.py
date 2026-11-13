@@ -14,11 +14,13 @@ from trace_gate.validation import (
 
 def test_all_repository_markdown_is_registered_and_current() -> None:
     paths = validate_managed_documents()
-    assert len(paths) == 10
+    assert len(paths) == 12
     assert {path.as_posix() for path in paths} == {
         "CHANGELOG.md",
         "CONTRIBUTING.md",
+        "LICENSING.md",
         "README.md",
+        "docs/LICENSING-TRANSITION.ko.md",
         "docs/REFERENCE-IMPLEMENTATION.ko.md",
         "docs/TRACE-GATE-FRAMEWORK.ko.md",
         "docs/subframeworks/TRACE-AGENT-HARNESS.ko.md",

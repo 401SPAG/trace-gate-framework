@@ -23,13 +23,13 @@ governance:
   custodian: repository
 time:
   created_at: '2026-08-03T00:00:00+09:00'
-  observed_at: '2026-10-17T06:21:18.687935+00:00'
-  updated_at: '2026-10-17T06:21:18.687935+00:00'
+  observed_at: '2026-11-13T19:19:05.884113+00:00'
+  updated_at: '2026-11-13T19:19:05.884113+00:00'
   effective_at: '2026-08-03T00:00:00+09:00'
 provenance:
   source_refs:
   - docs/managed-document-manifest.yaml
-  repository: polargomz/trace-gate-framework
+  repository: 401SPAG/trace-gate-framework
   branch: null
   commit: null
   tool_version: trace-gate-framework/1.1.0
@@ -42,7 +42,7 @@ validation:
   status: pass
   validator_id: trace-gate.managed-documents
   validator_version: 1.1.0
-  validated_at: '2026-10-17T06:21:18.687935+00:00'
+  validated_at: '2026-11-13T19:19:05.884113+00:00'
   warnings: 0
   failures: 0
 lineage:
@@ -58,7 +58,7 @@ storage:
 freshness:
   mode: event_driven
   status: current
-  evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+  evaluated_at: '2026-11-13T19:19:05.884113+00:00'
   reason: Registered documents are verified against canonical repository content
 access:
   sensitivity: public
@@ -75,7 +75,7 @@ documents:
 - identity:
     artifact_id: DOC.TRACE-GATE.README
     artifact_type: markdown_document
-    revision_id: REV.SHA256.dd71fb789ffdfb36
+    revision_id: REV.SHA256.036109e3de53f93d
     schema_version: 0.2.0
   scope:
     system: trace-gate-framework
@@ -93,26 +93,26 @@ documents:
     custodian: repository
   time:
     created_at: null
-    observed_at: '2026-10-17T06:21:18.687935+00:00'
-    updated_at: '2026-10-17T06:21:18.687935+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
     effective_at: '2026-08-03T00:00:00+09:00'
   provenance:
     source_refs:
     - README.md
-    repository: polargomz/trace-gate-framework
+    repository: 401SPAG/trace-gate-framework
     branch: null
     commit: null
     tool_version: trace-gate-framework/1.1.0
   integrity:
     algorithm: sha256
-    sha256: dd71fb789ffdfb364f4fe9e6c2d0daeb827dd38f8b399d1c5937b9072cc695d0
-    size_bytes: 8008
+    sha256: 036109e3de53f93d5cf0a2e362fe303e160288fc1760304606dfe0fb9fe75f8f
+    size_bytes: 8688
     signature_status: not_configured
   validation:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-10-17T06:21:18.687935+00:00'
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -130,7 +130,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
@@ -139,7 +139,7 @@ documents:
 - identity:
     artifact_id: DOC.TRACE-GATE.CONTRIBUTING
     artifact_type: markdown_document
-    revision_id: REV.SHA256.35f5a9771266aeee
+    revision_id: REV.SHA256.485d0aa6f97172bd
     schema_version: 0.2.0
   scope:
     system: trace-gate-framework
@@ -157,26 +157,26 @@ documents:
     custodian: repository
   time:
     created_at: null
-    observed_at: '2026-10-17T06:21:18.687935+00:00'
-    updated_at: '2026-10-17T06:21:18.687935+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
     effective_at: '2026-08-03T00:00:00+09:00'
   provenance:
     source_refs:
     - CONTRIBUTING.md
-    repository: polargomz/trace-gate-framework
+    repository: 401SPAG/trace-gate-framework
     branch: null
     commit: null
     tool_version: trace-gate-framework/1.1.0
   integrity:
     algorithm: sha256
-    sha256: 35f5a9771266aeeed5fd90de5a44c6340cdcf24ae112d7e08c44c74fb992ba1c
-    size_bytes: 2511
+    sha256: 485d0aa6f97172bd01b15fb7118ad0065081183ed279797d8bdddceff2282843
+    size_bytes: 5381
     signature_status: not_configured
   validation:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-10-17T06:21:18.687935+00:00'
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -194,7 +194,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
@@ -203,7 +203,7 @@ documents:
 - identity:
     artifact_id: DOC.TRACE-GATE.CHANGELOG
     artifact_type: markdown_document
-    revision_id: REV.SHA256.63be6b4af153f41d
+    revision_id: REV.SHA256.8d95a237619eefdb
     schema_version: 0.2.0
   scope:
     system: trace-gate-framework
@@ -221,26 +221,26 @@ documents:
     custodian: repository
   time:
     created_at: null
-    observed_at: '2026-10-17T06:21:18.687935+00:00'
-    updated_at: '2026-10-17T06:21:18.687935+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
     effective_at: '2026-08-03T00:00:00+09:00'
   provenance:
     source_refs:
     - CHANGELOG.md
-    repository: polargomz/trace-gate-framework
+    repository: 401SPAG/trace-gate-framework
     branch: null
     commit: null
     tool_version: trace-gate-framework/1.1.0
   integrity:
     algorithm: sha256
-    sha256: 63be6b4af153f41d76168efa2b69ea201c800cc458b6081bf96c7e78969f8e3c
-    size_bytes: 5638
+    sha256: 8d95a237619eefdb72aa63412f8f934342b4829a8161b6c853b831ed74148bb4
+    size_bytes: 6642
     signature_status: not_configured
   validation:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-10-17T06:21:18.687935+00:00'
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -258,7 +258,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
@@ -267,7 +267,7 @@ documents:
 - identity:
     artifact_id: DOC.TRACE-GATE.CORE.KO
     artifact_type: markdown_document
-    revision_id: REV.SHA256.8ed0e4337d1d9ab6
+    revision_id: REV.SHA256.81028798b136265b
     schema_version: 0.2.0
   scope:
     system: trace-gate-framework
@@ -285,26 +285,26 @@ documents:
     custodian: repository
   time:
     created_at: null
-    observed_at: '2026-10-17T06:21:18.687935+00:00'
-    updated_at: '2026-10-17T06:21:18.687935+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
     effective_at: '2026-08-03T00:00:00+09:00'
   provenance:
     source_refs:
     - docs/TRACE-GATE-FRAMEWORK.ko.md
-    repository: polargomz/trace-gate-framework
+    repository: 401SPAG/trace-gate-framework
     branch: null
     commit: null
     tool_version: trace-gate-framework/1.1.0
   integrity:
     algorithm: sha256
-    sha256: 8ed0e4337d1d9ab6120e976a94af63630f898f365033e37d288ad5d4915bc278
-    size_bytes: 32671
+    sha256: 81028798b136265b534460cf07701dea9b77fe5b2781d0be209f17366fc92778
+    size_bytes: 32778
     signature_status: not_configured
   validation:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-10-17T06:21:18.687935+00:00'
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -320,7 +320,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
@@ -347,13 +347,13 @@ documents:
     custodian: repository
   time:
     created_at: null
-    observed_at: '2026-10-17T06:21:18.687935+00:00'
-    updated_at: '2026-10-17T06:21:18.687935+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
     effective_at: '2026-08-03T00:00:00+09:00'
   provenance:
     source_refs:
     - docs/REFERENCE-IMPLEMENTATION.ko.md
-    repository: polargomz/trace-gate-framework
+    repository: 401SPAG/trace-gate-framework
     branch: null
     commit: null
     tool_version: trace-gate-framework/1.1.0
@@ -366,7 +366,7 @@ documents:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-10-17T06:21:18.687935+00:00'
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -384,7 +384,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
@@ -393,7 +393,7 @@ documents:
 - identity:
     artifact_id: DOC.TRACE-GATE.SUBFRAMEWORK.DM.KO
     artifact_type: markdown_document
-    revision_id: REV.SHA256.0248de2d9da1380d
+    revision_id: REV.SHA256.f134440703cbf64a
     schema_version: 0.2.0
   scope:
     system: trace-gate-framework
@@ -411,26 +411,26 @@ documents:
     custodian: repository
   time:
     created_at: null
-    observed_at: '2026-10-17T06:21:18.687935+00:00'
-    updated_at: '2026-10-17T06:21:18.687935+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
     effective_at: '2026-08-03T00:00:00+09:00'
   provenance:
     source_refs:
     - docs/subframeworks/TRACE-DOCUMENT-MANAGEMENT.ko.md
-    repository: polargomz/trace-gate-framework
+    repository: 401SPAG/trace-gate-framework
     branch: null
     commit: null
     tool_version: trace-gate-framework/1.1.0
   integrity:
     algorithm: sha256
-    sha256: 0248de2d9da1380d6d81522bd3976be6b5cf2c4685b01cff715d48a9964a8077
-    size_bytes: 43244
+    sha256: f134440703cbf64ae0b24583aac2264347cef7472c98274be1c939868323fe1a
+    size_bytes: 43419
     signature_status: not_configured
   validation:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-10-17T06:21:18.687935+00:00'
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -448,7 +448,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
@@ -457,7 +457,7 @@ documents:
 - identity:
     artifact_id: DOC.TRACE-GATE.SUBFRAMEWORK.AH.KO
     artifact_type: markdown_document
-    revision_id: REV.SHA256.3f211844d2172d7c
+    revision_id: REV.SHA256.d65aa4de04bc88d5
     schema_version: 0.2.0
   scope:
     system: trace-gate-framework
@@ -475,26 +475,26 @@ documents:
     custodian: repository
   time:
     created_at: null
-    observed_at: '2026-10-17T06:21:18.687935+00:00'
-    updated_at: '2026-10-17T06:21:18.687935+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
     effective_at: '2026-08-03T00:00:00+09:00'
   provenance:
     source_refs:
     - docs/subframeworks/TRACE-AGENT-HARNESS.ko.md
-    repository: polargomz/trace-gate-framework
+    repository: 401SPAG/trace-gate-framework
     branch: null
     commit: null
     tool_version: trace-gate-framework/1.1.0
   integrity:
     algorithm: sha256
-    sha256: 3f211844d2172d7c0dca9e32341d7ac7607331a7e06073305a20121e9ce85730
-    size_bytes: 13063
+    sha256: d65aa4de04bc88d598464a8d212bdf6e1dba9f39738cbe0a53a97d0ebc52be75
+    size_bytes: 13464
     signature_status: not_configured
   validation:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-10-17T06:21:18.687935+00:00'
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -512,7 +512,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
@@ -539,13 +539,13 @@ documents:
     custodian: repository
   time:
     created_at: null
-    observed_at: '2026-10-17T06:21:18.687935+00:00'
-    updated_at: '2026-10-17T06:21:18.687935+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
     effective_at: '2026-08-03T00:00:00+09:00'
   provenance:
     source_refs:
     - examples/README.md
-    repository: polargomz/trace-gate-framework
+    repository: 401SPAG/trace-gate-framework
     branch: null
     commit: null
     tool_version: trace-gate-framework/1.1.0
@@ -558,7 +558,7 @@ documents:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-10-17T06:21:18.687935+00:00'
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -576,7 +576,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
@@ -603,13 +603,13 @@ documents:
     custodian: repository
   time:
     created_at: null
-    observed_at: '2026-10-17T06:21:18.687935+00:00'
-    updated_at: '2026-10-17T06:21:18.687935+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
     effective_at: '2026-08-03T00:00:00+09:00'
   provenance:
     source_refs:
     - templates/HANDOFF.md
-    repository: polargomz/trace-gate-framework
+    repository: 401SPAG/trace-gate-framework
     branch: null
     commit: null
     tool_version: trace-gate-framework/1.1.0
@@ -622,7 +622,7 @@ documents:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-10-17T06:21:18.687935+00:00'
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -640,7 +640,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
@@ -649,7 +649,7 @@ documents:
 - identity:
     artifact_id: DOC.TRACE-GATE.SUBFRAMEWORK.DM.MIGRATION.KO
     artifact_type: markdown_document
-    revision_id: REV.SHA256.986cad2bf8b7aa47
+    revision_id: REV.SHA256.dec67b77b41470f7
     schema_version: 0.2.0
   scope:
     system: trace-gate-framework
@@ -667,26 +667,26 @@ documents:
     custodian: repository
   time:
     created_at: '2026-10-17T00:00:00+09:00'
-    observed_at: '2026-10-17T06:21:18.687935+00:00'
-    updated_at: '2026-10-17T06:21:18.687935+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
     effective_at: '2026-08-03 00:00:00+09:00'
   provenance:
     source_refs:
     - docs/subframeworks/TRACE-DM-MIGRATION.ko.md
-    repository: polargomz/trace-gate-framework
+    repository: 401SPAG/trace-gate-framework
     branch: null
     commit: null
     tool_version: trace-gate-framework/1.1.0
   integrity:
     algorithm: sha256
-    sha256: 986cad2bf8b7aa47513f539dc49b347db1b98912754742273292e3b9b416d435
-    size_bytes: 29286
+    sha256: dec67b77b41470f78ce8da5af8f1a5ccb9bbdab7cee090e4f11b4bf93c6bbe28
+    size_bytes: 29375
     signature_status: not_configured
   validation:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-10-17T06:21:18.687935+00:00'
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -704,7 +704,134 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-10-17T06:21:18.687935+00:00'
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
+    reason: content digest and size match the canonical file
+  access:
+    sensitivity: public
+    contains_secrets: false
+    access_policy_ref: POLICY.PUBLIC-REPOSITORY
+- identity:
+    artifact_id: DOC.TRACE-GATE.LICENSING
+    artifact_type: markdown_document
+    revision_id: REV.SHA256.3a0ae03877f4b26b
+    schema_version: 0.2.0
+  scope:
+    system: trace-gate-framework
+    domain: governance
+    stage: published
+    purpose: Current document and software licensing scope with prior permissions
+      preserved
+    classification: public
+  governance:
+    owner: D. JEONG
+    producer: maintainer
+    approvers:
+    - maintainer
+    validators:
+    - trace-gate.managed-documents
+    custodian: repository
+  time:
+    created_at: '2026-11-13T19:19:05.686183+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
+    effective_at: '2026-11-13T19:19:05.686183+00:00'
+  provenance:
+    source_refs:
+    - LICENSING.md
+    repository: 401SPAG/trace-gate-framework
+    branch: null
+    commit: null
+    tool_version: trace-gate-framework/1.1.0
+  integrity:
+    algorithm: sha256
+    sha256: 3a0ae03877f4b26b4803e61a4eeea63d04985ede9b44e92272af10fdf1cebca2
+    size_bytes: 4650
+    signature_status: not_configured
+  validation:
+    status: pass
+    validator_id: trace-gate.managed-documents
+    validator_version: 1.1.0
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
+    warnings: 0
+    failures: 0
+  lineage:
+    parent_artifact_ids: []
+    supersedes: []
+    relations:
+    - references
+    sequence: null
+  storage:
+    canonical_location: LICENSING.md
+    replicas: []
+    retention_class: governance_ledger
+    legal_hold: false
+  freshness:
+    mode: event_driven
+    status: current
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
+    reason: content digest and size match the canonical file
+  access:
+    sensitivity: public
+    contains_secrets: false
+    access_policy_ref: POLICY.PUBLIC-REPOSITORY
+- identity:
+    artifact_id: DOC.TRACE-GATE.LICENSING-TRANSITION.KO
+    artifact_type: markdown_document
+    revision_id: REV.SHA256.7eb90122473fc863
+    schema_version: 0.2.0
+  scope:
+    system: trace-gate-framework
+    domain: governance
+    stage: published
+    purpose: Licensing transition baseline, provenance, and historical rights preservation
+    classification: public
+  governance:
+    owner: D. JEONG
+    producer: maintainer
+    approvers:
+    - maintainer
+    validators:
+    - trace-gate.managed-documents
+    custodian: repository
+  time:
+    created_at: '2026-11-13T19:19:05.686183+00:00'
+    observed_at: '2026-11-13T19:19:05.884113+00:00'
+    updated_at: '2026-11-13T19:19:05.884113+00:00'
+    effective_at: '2026-11-13T19:19:05.686183+00:00'
+  provenance:
+    source_refs:
+    - docs/LICENSING-TRANSITION.ko.md
+    repository: 401SPAG/trace-gate-framework
+    branch: null
+    commit: null
+    tool_version: trace-gate-framework/1.1.0
+  integrity:
+    algorithm: sha256
+    sha256: 7eb90122473fc86307aebc64cc00cb2411188cebeda6b886137b44661713d2a9
+    size_bytes: 3904
+    signature_status: not_configured
+  validation:
+    status: pass
+    validator_id: trace-gate.managed-documents
+    validator_version: 1.1.0
+    validated_at: '2026-11-13T19:19:05.884113+00:00'
+    warnings: 0
+    failures: 0
+  lineage:
+    parent_artifact_ids: []
+    supersedes: []
+    relations:
+    - references
+    sequence: null
+  storage:
+    canonical_location: docs/LICENSING-TRANSITION.ko.md
+    replicas: []
+    retention_class: governance_ledger
+    legal_hold: false
+  freshness:
+    mode: event_driven
+    status: current
+    evaluated_at: '2026-11-13T19:19:05.884113+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public

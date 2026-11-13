@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — Licensing transition / package 2.0.0 (2026-11-14)
+
+- 문서 공개 조건을 CC BY-NC-ND 4.0으로, 신규 코드 허락을 상업적 이용·수정본 외부 배포를 제한하는 별도 소프트웨어 조건으로 정리했다. 공식 기여 제출·검토용 예외와 신규 기여자의 명시적 권리 허락을 함께 제공한다.
+- 기존 CC BY 등으로 유효하게 허락된 권한은 보존한다. 변경 전 커밋·전체 파일 해시와 이전 LICENSE 원문을 보존하고 적용 범위를 [라이선스 안내](LICENSING.md)와 [전환 기록](docs/LICENSING-TRANSITION.ko.md)에 명시했다.
+- README·CONTRIBUTING·관련 문서·TRACE-DM manifest를 동기화했다. Python 패키지를 `2.0.0`으로 구별하고 배포 메타데이터와 라이선스 파일 동봉을 추가했다. 이 버전 변경은 실행 로직이나 Core/DM/AH 계약을 변경하지 않으며, 패키지 레지스트리 게시나 새 릴리스 태그 생성을 뜻하지 않는다.
+
 ## Unreleased — Core/AH/DM boundary hardening (2026-10-17)
 
 - 리뷰의 6개 취약 동작을 먼저 실패 회귀로 고정한 뒤 교정했다. verifier 필수, checkpoint chain 검증, 실패 시도 예산·절대 deadline·명시 resume·결과 불명 쓰기 차단을 추가했다.

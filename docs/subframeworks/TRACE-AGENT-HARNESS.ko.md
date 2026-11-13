@@ -7,7 +7,7 @@
 - Companion subframework: TRACE Document Management `0.2.0`
 - Scope: AI agent의 문맥 조립, 모델 실행, tool 호출, 검증, checkpoint, 종료와 선택적 하위 agent 조정
 - Portability: 특정 모델, provider, SDK와 실행 화면에 비종속
-- License: CC BY 4.0
+- License: [CC BY-NC-ND 4.0](../../LICENSE); [적용 범위·기존 허락 보존](../../LICENSING.md)
 
 ## 1. 목적
 
@@ -273,4 +273,4 @@ Subagent Task Contract는 다음을 고정한다.
 
 ## 라이선스
 
-Copyright © 2026 D. JEONG. CC BY 4.0에 따라 제공된다.
+Copyright © 2026 D. JEONG. [CC BY-NC-ND 4.0](../../LICENSE)에 따라 제공한다. 저작자 표시를 유지한 비상업적 원본 공유를 허용하며, 상업적 이용과 수정본 공유에는 별도 허락이 필요하다. 기존에 부여된 CC BY 등 권한은 보존한다. 코드 예시와 신규 조건의 세부 [적용 범위](../../LICENSING.md)를 확인한다.

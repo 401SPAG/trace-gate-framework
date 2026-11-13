@@ -1,0 +1,127 @@
+401SPAG Noncommercial Software License 1.0
+Identifier: LicenseRef-401SPAG-NC-ND-1.0
+Publication date: 2026-11-14
+
+Copyright (c) 2026 D. JEONG and the respective contributors.
+Licensing contact: mail@401spag.com
+
+1. Scope and prior permissions
+
+This license applies only to software identified as covered by this license
+in LICENSING.md, and only to rights the relevant copyright holder or its
+authorized representative (the "Licensor") may grant. The recipient is "You".
+"Software" includes covered source code, object code, schemas, executable
+examples, configuration, and machine-readable templates.
+
+This license is a new permission, not a revocation of an earlier permission.
+Rights already granted under CC BY 4.0 or another license remain available
+under that license for the material to which they apply, including when that
+material is present in a later version. The historical baseline and file
+inventory are identified in docs/LICENSING-TRANSITION.ko.md. A new version
+number, notice, or repository location does not remove those rights.
+Third-party material remains subject to its own notices and permissions.
+
+2. Definitions
+
+"Noncommercial" means not primarily intended for or directed toward
+commercial advantage or monetary compensation. Commercial use includes use
+in paid products or services, commercial SaaS, paid customer delivery, or
+the operation of a business for commercial advantage, even when no fee is
+charged specifically for the Software. An organization's nonprofit or
+for-profit status alone does not determine the purpose of a use.
+
+"Modified Software" means a translation, alteration, adaptation, or other
+derivative of the Software requiring the Licensor's copyright permission.
+Compiling unmodified source, lossless format conversion, or packaging that
+does not alter the Software's expressive content or behavior is not, by
+itself, a modification for this license.
+
+"Distribute" means provide copies or make the Software available to anyone
+outside You or, if You are an organization, outside that same legal entity.
+Access by that entity's personnel solely for its authorized internal use
+and under its control is internal use. Affiliates and customers are separate
+recipients. Merely producing output containing none of the Software's
+protected expression is not distribution of the Software.
+
+3. Limited permission
+
+Subject to these conditions, the Licensor grants You a worldwide,
+nonexclusive, royalty-free copyright license for the copyright term to:
+
+(a) inspect, copy, run, and study the Software for Noncommercial purposes;
+(b) make and use Modified Software privately for Noncommercial purposes;
+(c) Distribute unmodified Software for Noncommercial purposes, preserving
+    copyright and attribution notices and providing LICENSE-CODE,
+    LICENSING.md, and the applicable historical and third-party notices.
+
+Recipients of unmodified Software receive this offer directly from the
+Licensor. You must not represent yourself as able to grant broader rights
+on the Licensor's behalf. Reasonable placement of notices with a binary
+distribution is sufficient; notices need not be displayed on every screen.
+
+4. Restrictions and separate permission
+
+Except for section 5, this license does not authorize commercial use or
+distribution of the Software, or distribution of Modified Software, whether
+in source or binary form and whether or not a fee is charged. Offering
+remote access to Software functionality for commercial advantage requires
+separate permission even if no copy is distributed.
+
+For a use outside section 3, obtain a separate written license from a party
+authorized to grant the necessary rights. Contact mail@401spag.com. This
+license does not promise that a separate license will be available.
+
+5. Limited official contribution permission
+
+You may prepare and share modifications, patches, review branches, and
+forks solely to propose, review, test, and integrate a contribution into
+https://github.com/401SPAG/trace-gate-framework, following CONTRIBUTING.md.
+This permission applies even if the contribution activity is sponsored by
+a commercial organization. It does not authorize a competing distribution,
+customer delivery, commercial operation, or general distribution of a
+modified edition. Necessary review copies and the hosting platform's
+retained contribution history may remain accessible for this purpose.
+
+This section concerns use of the existing Software for contributions.
+Rights in a contributor's new work are granted only by the contributor's
+express agreement described in CONTRIBUTING.md, not by this section alone.
+
+6. Rights not granted or restricted
+
+All rights not expressly granted are reserved, subject to section 1.
+No patent or trademark license, endorsement, or right to use logos as
+branding is granted. This license does not restrict statutory exceptions,
+fair use, rights that cannot lawfully be limited, independent ideas or
+methods, or other acts for which the Licensor's permission is unnecessary.
+It does not claim ownership of independent output or third-party material.
+401SPAG is the publishing and licensing contact; naming it does not assign
+any author's copyright to it.
+
+7. Termination and reinstatement
+
+The permissions under this license terminate automatically if You fail to
+comply with its conditions. They are reinstated from the date You cure the
+violation if You cure it within 30 days after discovering it, or upon the
+Licensor's express reinstatement. Reinstatement does not waive remedies for
+the violation. Termination under this license does not terminate separate
+permissions under an earlier or different license. Sections 1, 6, 8 and 9
+survive termination as applicable.
+
+8. Disclaimer and limitation of liability
+
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE IS PROVIDED "AS IS",
+WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND
+NONINFRINGEMENT. TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSOR
+SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING
+FROM OR IN CONNECTION WITH THE SOFTWARE OR ITS USE, WHETHER IN CONTRACT,
+TORT, OR OTHERWISE. MANDATORY RIGHTS AND LIABILITIES ARE UNAFFECTED.
+
+9. Interpretation
+
+Exercising permission granted only by this license signifies acceptance of
+its conditions. If a provision is unenforceable, the remaining provisions
+continue to the extent permitted by law. No change to these terms binds
+either party without its agreement. This is a custom software license;
+it is not a Creative Commons license or an OSI-approved open-source license.
+The English text of LICENSE-CODE is the operative software license.

@@ -10,7 +10,7 @@
 - Normative dependency: TRACE Gate Framework의 Request, Boundary, Evidence, Promotion과 Handoff 계약
 - Implementation portability: 저장소, 데이터베이스, 클라우드, 특정 LLM 또는 실행 도구에 비종속
 - Author: D. JEONG
-- License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- License: [CC BY-NC-ND 4.0](../../LICENSE); [적용 범위·기존 허락 보존](../../LICENSING.md)
 
 ## 1. 목적
 
@@ -742,7 +742,7 @@ trace-gate-framework/
 TRACE-DM 배포 단위는 다음을 함께 제공해야 한다.
 
 1. 이 문서를 `docs/subframeworks/TRACE-DOCUMENT-MANAGEMENT.ko.md`로 등록한다.
-2. Framework ID, 저작자와 CC BY 4.0 라이선스를 TRACE 정본과 일치시킨다.
+2. Framework ID, 저작자와 CC BY-NC-ND 4.0 문서 고지를 TRACE 정본과 일치시키고, 코드 조건과 기존 허락 보존은 [적용 범위](../../LICENSING.md)를 따른다.
 3. TRACE 전체 문서의 `Context Rehydration`, `Evidence Chain`, `Synchronized Truth & Handoff`에서 TRACE-DM을 참조한다.
 4. README 문서 목록에 TRACE-DM을 추가한다.
 5. access intent, manifest, read profile, 선택적 embedding profile·manifest와 GateReceipt 템플릿을 제공한다.
@@ -767,4 +767,4 @@ TRACE core와 공유해야 하는 integration point:
 
 Copyright © 2026 D. JEONG.
 
-이 문서는 TRACE Gate Framework와 동일하게 [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)에 따라 제공된다. 공유하거나 수정한 자료를 배포할 때는 적절한 저작자 표시와 라이선스 링크를 제공하고 변경 사실을 밝혀야 한다.
+이 문서는 [CC BY-NC-ND 4.0](../../LICENSE)에 따라 제공한다. 저작자 표시를 유지한 비상업적 원본 공유를 허용하며, 상업적 이용과 수정본 공유에는 별도 허락이 필요하다. 기존에 부여된 CC BY 등 권한은 보존한다. 코드 예시와 신규 조건의 세부 [적용 범위](../../LICENSING.md)를 확인한다.
