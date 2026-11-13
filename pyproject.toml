@@ -1,11 +1,13 @@
 [build-system]
-requires = ["setuptools>=69"]
+requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "trace-gate-framework"
-version = "1.2.0"
+version = "2.0.0"
 description = "Reference validators and runtime contracts for TRACE Gate Framework"
+license = "CC-BY-4.0 AND CC-BY-NC-ND-4.0 AND LicenseRef-401SPAG-NC-ND-1.0"
+license-files = ["LICENSE", "LICENSE-CODE", "LICENSING.md", "CONTRIBUTING.md", "licenses/CC-BY-4.0.txt", "docs/LICENSING-TRANSITION.ko.md", "docs/licensing/transition-2026-11-14.json"]
 requires-python = ">=3.11"
 dependencies = [
   "jsonschema>=4.23,<5",

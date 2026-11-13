@@ -4,7 +4,7 @@
 - Contract version: `0.1.0`
 - Compatible parent: TRACE-DM `0.2.0`, TRACE core `1.1.x`
 - 상태: additive reference contract. 기존 문서 lifecycle과 별도로 선택 적용한다.
-- 저작자: D. JEONG. 라이선스: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- 저작자: D. JEONG. 문서 라이선스: [CC BY-NC-ND 4.0](../../LICENSE); 코드·템플릿 조건과 [적용 범위·기존 허락 보존](../../LICENSING.md)을 함께 따른다.
 
 ## 목적과 핵심 의미
 
