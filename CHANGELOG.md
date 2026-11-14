@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — Bilingual documentation (2026-11-14)
+
+- Added English/Korean entry READMEs, documentation maps and examples, an English implementation guide, and English contribution/licensing reading translations.
+- Clarified Core/DM/AH responsibilities, timeout and resumption limits, canonical context, and independent version markers without changing execution logic or license grants.
+- Registered language counterparts and provenance in TRACE-DM; updated documentation coverage checks. Detailed Korean specifications and historical agreement texts are retained.
+- 국·영문 안내·예제와 영문 사용·기여·라이선스 안내를 추가했다. 개념과 구현의 범위, 타임아웃·재개 조건 및 용어를 맞췄으며 실행 로직·허락 조건은 변경하지 않았다. 상세 국문 규격과 과거 합의 원문을 보존하고 문서 등록·검증을 동기화했다.
+
 ## Unreleased — License clarification / package 2.0.1 (2026-11-14)
 
 - 코드 조건 `1.1`에서 상업적 배포 제한과 비상업적 원본 배포 허용의 충돌을 교정하고 사업 목적 PoC·내부/외부 수신자·원격 기능·독립 입력/출력의 경계를 명시했다.

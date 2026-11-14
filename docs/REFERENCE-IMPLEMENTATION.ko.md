@@ -1,5 +1,7 @@
 # TRACE 참조 구현 사용 가이드
 
+**한국어 상세 가이드** | [English usage guide](REFERENCE-IMPLEMENTATION.en.md)
+
 ## 1. 목적과 범위
 
 이 저장소는 규격 문서뿐 아니라 TRACE 계약을 검증하고 agent 실행 경계를 시험할 수 있는 최소 참조 구현을 제공한다. 실제 LLM provider, 원격 shell, cloud credential과 운영 데이터는 포함하지 않는다.
@@ -11,16 +13,18 @@
 
 ## 2. 설치와 검증
 
-Python 3.11 이상이 필요하다.
+패키지 메타데이터는 Python 3.11 이상을 요구한다. 아래 명령은 CI와 같은 Python 3.12를 사용한다.
 
 ```bash
-python -m venv .venv
+python3.12 -m venv .venv
 .venv/bin/python -m pip install -e '.[dev]'
 .venv/bin/python scripts/validate_templates.py
 .venv/bin/python -m pytest -q
 ```
 
 CI는 같은 검증을 Python 3.12에서 수행한다.
+
+**확인된 호환성 한계:** 관측한 Python 3.15 환경에서는 `GzipFile`이 임시 스트림을 쓰기 모드로 해석하여 gzip 이전 아카이브 테스트 2건이 실패한다. 이 작업에는 CI의 Python 3.12 환경을 사용한다. 현재 패키지 메타데이터에는 Python 상한이 없지만, 모든 최신 인터프리터의 검증 통과를 의미하지는 않는다. 이번 문서 갱신에서 아카이브 구현 자체를 수정한 것은 아니다.
 
 ## 3. 구성요소
 
