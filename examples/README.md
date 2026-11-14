@@ -1,15 +1,26 @@
 # Reference examples
 
-Gate 평가:
+**English** | [한국어](README.ko.md) · [Repository home](../README.md)
+
+Run these commands from the repository root after completing the README's virtual-environment installation.
+
+## Evaluate a Gate
 
 ```bash
-python scripts/evaluate_gate.py templates/gate-decision.yaml examples/gate-facts.yaml
+.venv/bin/python scripts/evaluate_gate.py \
+  templates/gate-decision.yaml examples/gate-facts.yaml
 ```
 
-모델 공급자에 종속되지 않는 결정적 TRACE-AH 실행 예제:
+The evaluator computes a result and receipt from the policy and synthetic facts. A `pass` result is not operational approval. Evidence references must be authenticated by a trusted resolver in a deployment.
+
+## Run a deterministic agent example
 
 ```bash
-python examples/runtime_demo.py
+.venv/bin/python examples/runtime_demo.py
 ```
 
-예제는 실제 원격 mutation을 수행하지 않는다. 운영 adapter는 반드시 Request Receipt, Tool Definition과 authorization provider를 연결해야 한다.
+The example uses local fixture adapters for the model, tool and verifier. It does not call a live model or perform remote mutations. Inspect the printed result as an illustration of the runtime contract, not a production authorization receipt.
+
+Before connecting a real tool, provide a verified Request Receipt, scoped Tool Definition, approval resolver, effect observations, and an appropriate executor. Review [adapter requirements and limitations](../docs/REFERENCE-IMPLEMENTATION.en.md). Keep unresolved effects blocked; a timeout or a stored checkpoint is not evidence that replay is safe.
+
+Software examples follow [LICENSE-CODE](../LICENSE-CODE); surrounding explanatory text follows the [documentation terms](../LICENSING.en.md).

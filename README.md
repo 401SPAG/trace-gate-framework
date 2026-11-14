@@ -1,139 +1,91 @@
-# TRACE Gate Framework
+# TRACE-GATE Framework
 
-추적 가능하고 안전한 소프트웨어 변경·마이그레이션과 AI agent 실행을 위한 증거 기반 프레임워크입니다.
+**English** | [한국어](README.ko.md)
 
-> 속도는 Gate를 생략해서 얻는 것이 아니라, 경계를 명확히 하고 검증과 복구를 자동화해서 얻습니다.
+An evidence-based framework for software delivery governance: connect requests, authorized scope, canonical document context, observed effects, and permission to continue across interrupted agent sessions.
 
-## TRACE
+This repository contains specifications, machine-readable contracts, a Python reference implementation, and synthetic tests. The architecture is a research proposal; the implementation exercises selected contracts. Passing its tests does not establish production safety, distributed authorization, or operational effectiveness.
 
-| 축 | 의미 | 핵심 질문 |
+**Official repository:** [401SPAG/trace-gate-framework](https://github.com/401SPAG/trace-gate-framework) · [401SPAG](https://401spag.com) · [Contact](mailto:mail@401spag.com)
+
+## What TRACE means
+
+| Principle | Meaning | Question |
 |---|---|---|
-| **T — Trace** | 요청과 결정의 추적성 | 왜 이 작업을 하며 누가 무엇을 승인했는가? |
-| **R — Restrict** | 권한과 영향 범위 제한 | 무엇을 바꿀 수 있고 절대 바꾸면 안 되는가? |
-| **A — Assemble** | 되돌릴 수 있는 능력 단위 조립 | 큰 전환을 어떤 작은 기능 조각으로 나눌 것인가? |
-| **C — Confirm** | 테스트와 증적으로 사실 확인 | 성공했다는 주장을 어떤 근거로 증명하는가? |
-| **E — Elevate** | Gate를 통한 단계적 승격 | 언제 shadow를 primary 또는 official로 승격할 것인가? |
+| **T — Trace** | Trace requests, decisions, and evidence | Why is the work needed, and what was approved? |
+| **R — Restrict** | Limit authority and effects | What may change, and what must remain protected? |
+| **A — Assemble** | Compose bounded capabilities with recovery paths | How can the work be divided into manageable units? |
+| **C — Confirm** | Establish facts through evidence | What was observed, and what remains unknown? |
+| **E — Elevate** | Grant further operating authority through a Gate | When may the next stage be authorized? |
+
+A **Gate** is an evidence-based decision point, not an acronym. A passing evaluation alone does not grant execution or promotion authority. The five TRACE principles here are distinct from other projects named TRACE.
+
+## Three responsibilities
+
+| Area | Responsibility |
+|---|---|
+| **TRACE Core** | Requests, boundaries, approvals, evidence, and decisions about further authority |
+| **TRACE-DM — Document Management** | Canonical documents, revisions, lineage, integrity, freshness, and purpose-limited context |
+| **TRACE-AH — Agent Harness** | Mediated model/tool execution, observations, verification, checkpoints, and verified resumption |
 
 ```mermaid
 flowchart LR
-    T["T · Trace<br/>요청·결정·Ticket"] --> R["R · Restrict<br/>권한·writer·금지 경로"]
-    R --> A["A · Assemble<br/>작은 능력 단위 구현"]
-    A --> C["C · Confirm<br/>테스트·해시·원격 증적"]
-    C --> E["E · Elevate<br/>Shadow → Primary → Official"]
-    E --> O["Observe<br/>KPI·Incident·회귀"]
-    O --> T
+    CORE["TRACE Core<br/>Authority and evidence"] -->|Authorized scope| AH["TRACE-AH<br/>Agent Harness"]
+    CORE -->|Document governance| DM["TRACE-DM<br/>Document Management"]
+    DM -->|Verified context| AH
+    AH -->|Execution evidence| CORE
 ```
 
-## 문서
+These are logical responsibilities and can share a deployment. Summaries and search results are derived context; relevance does not make them authoritative. Optional semantic retrieval, multi-agent coordination, and TRACE-DM-MIGRATION extend particular use cases.
 
-- [TRACE Gate Framework 전체 문서](docs/TRACE-GATE-FRAMEWORK.ko.md)
-- [TRACE Document Management Subframework](docs/subframeworks/TRACE-DOCUMENT-MANAGEMENT.ko.md): 문서 정본·계보, 목적 기반 접근과 선택적 그룹 embedding
-- [TRACE-DM 범위별 이전 방법론](docs/subframeworks/TRACE-DM-MIGRATION.ko.md): 물리 이전/참조-only를 구분하고 수신 완료·양측 cutover·업무 활성화를 분리하는 8단계 계약
-- [TRACE Agent Harness Subframework](docs/subframeworks/TRACE-AGENT-HARNESS.ko.md): model·tool·verification·checkpoint와 선택적 multi-agent 계약
-- [참조 구현 사용 가이드](docs/REFERENCE-IMPLEMENTATION.ko.md)
-- [관리 문서 메타데이터 Manifest](docs/managed-document-manifest.yaml): 저장소 Markdown의 identity·hash·lineage·freshness·access envelope
-- [변경 기록](CHANGELOG.md)
-- [기여 가이드](CONTRIBUTING.md)
+## Conditions to preserve
 
-## 프레임워크 구성
+- Bind the request, approval, scope, and relevant document revisions **before an effect**.
+- Distinguish an attempted action, a reported success, and an observed effect. A timeout is not evidence that nothing changed.
+- Keep unresolved writes blocked in the same run. Investigate actual effects before deciding on recovery or a newly authorized run.
+- Resume only after approval, context, execution history, scope, and original limits remain valid. A checkpoint alone is not permission to resume.
+- Supply trusted observation and approval resolvers, protected evidence and independent ledger anchors, and host-enforced concurrency controls where required.
 
-```mermaid
-flowchart TB
-    CORE["TRACE Core<br/>Request·Boundary·Evidence·Promotion"]
-    DM["TRACE-DM<br/>Document·Context·Freshness"]
-    AH["TRACE-AH<br/>Model·Tool·State·Verification"]
-    IMPL["Reference Implementation<br/>Schema·Evaluator·Runtime·Tests"]
+The reference runtime is a single-process example. Its Python handler timeout is checked after the handler returns; it does not forcibly stop a running tool. Production executors must provide their own isolation, deadlines, and effect reconciliation. See the [implementation guide](docs/REFERENCE-IMPLEMENTATION.en.md).
 
-    CORE --> DM
-    CORE --> AH
-    DM --> AH
-    AH --> IMPL
-    CORE --> IMPL
-```
+## Start locally
 
-## 바로 사용하기
-
-참조 구현의 운영 보장 범위는 [교정 적합성 연결표](docs/REFERENCE-IMPLEMENTATION.ko.md#9-교정-적합성-연결표--2026-10-17)를 확인하십시오. 최신 교정은 verifier·명시적 resume·검증 metadata를 요구하므로 기존 adapter의 무검증 기본값을 허용하지 않습니다. 합성 테스트 PASS는 분산 권한·실제 운영 승격의 인증이 아닙니다.
-
-`templates/`에서 다음 파일을 프로젝트에 복사해 시작할 수 있습니다.
-
-- `request-receipt.yaml`: 작업 전 요청·권한 Receipt
-- `ticket.yaml`: 작고 검증 가능한 구현 단위
-- `evidence-manifest.yaml`: commit·image·run·hash 증거 사슬
-- `gate-decision.yaml`: KPI와 승격 판정
-- `HANDOFF.md`: 다음 작업자·AI 세션을 위한 상태 인계
-- `document-access-intent.yaml`: AI/LLM 접근 목적·대상·민감도 선언
-- `document-read-profile.yaml`: 목적별 최소 tier·context budget·확대 조건
-- `document-manifest.yaml`: 문서 revision·무결성·계보·freshness 계약
-- `document-gate-receipt.yaml`: 사전 접근 심사와 문서 Gate 판정 증적
-- `document-embedding-profile.yaml`: 선택 객체 그룹의 model·chunk·index·retrieval 정책
-- `document-embedding-manifest.yaml`: source revision·vector·index digest와 freshness 증적
-- `agent-run.yaml`: run context·budget·tool·verification 계약
-- `tool-definition.yaml`: tool effect·risk·schema·idempotency 계약
-- `subagent-task.yaml`: 제한된 하위 agent scope·lease·merge 계약
-- `document-migration-*.yaml`, `document-relocation-map.yaml`, `document-cutover-receipt.yaml`: 선택적 이전 계획·패키지·transaction·보상·경로 map·cutover 계약
-- 상대 링크 실제 복원과 대형 artifact chunk-set은 별도 opt-in·승인 한도·명시적 resume를 요구한다. 기본 archive의 링크 거부와 256MiB 한도는 유지한다. synthetic 검증은 실제 외부 저장소·분산 fencing·프로젝트 복원 성공을 뜻하지 않는다.
-
-가장 작은 도입 단위는 다음 네 가지입니다.
-
-1. Receipt before effect
-2. 허용·금지 경계
-3. 기계적으로 판정 가능한 Gate
-4. 재현 가능한 Evidence
-
-AI/LLM이 문서에 접근하는 프로젝트는 TRACE-DM의 목적 기반 접근 판정을 적용합니다. Semantic retrieval이 필요한 경우에만 선택한 객체 그룹에 embedding projection을 추가할 수 있으며, 별도 vector graph는 필수가 아닙니다. Agent가 tool을 실행하는 프로젝트는 TRACE-AH의 typed action, scoped Tool Registry, append-only checkpoint와 verifier loop를 적용합니다.
-
-## 적용 대상
-
-- 일반 소프트웨어 개발과 배포
-- 서버·클라우드·아키텍처 이전
-- 데이터 수집·정규화·승격 파이프라인
-- 운영 자동화와 AI 에이전트 기반 개발
-- 감사 가능성과 데이터 무결성이 중요한 프로젝트
-
-## 버전
-
-현재 TRACE core 문서 버전은 `1.1.0`입니다. TRACE-DM `0.2.0`과 TRACE-AH `0.1.0`은 각각 독립 버전을 가집니다.
-
-Python 패키지는 `2.0.1`이며 core 문서/schema 버전과 별개입니다. `2.0.0`의 [라이선스 정책 전환](docs/LICENSING-TRANSITION.ko.md)과 `2.0.1`의 [코드 조건 명확화](docs/LICENSING-REVIEW-1.1.ko.md)는 `1.2.0`의 실행 로직을 유지합니다. `1.2.0`에서 도입한 실행 계약 강화는 이전 호출자에 대한 breaking change입니다. 필수 verifier, v2 checkpoint 재개 승인, evaluator `1.1.1` policy 및 context adapter metadata 이전 조건을 [구현 가이드](docs/REFERENCE-IMPLEMENTATION.ko.md)에서 확인해야 합니다. 기존 receipt/checkpoint를 새 버전으로 소급 수정하지 않습니다.
-
-선택적 TRACE-DM-MIGRATION 계약은 `0.1.0`이며 TRACE-DM `0.2.0`·core `1.1.x`와 호환된다. 기존 문서 상태 enum은 변경하지 않는다. 참조 검증/안전 해제는 실제 분산 fencing·NAS 복원·업무 재개 실행을 대신하지 않는다.
-
-## 템플릿 검증
-
-Python 기반 참조 구현과 검증은 Python 3.11 이상의 프로젝트별 가상환경에서 실행합니다.
+Review the [license scope](LICENSING.en.md) before using the software. Package metadata requires Python **3.11+**; use **3.12** to reproduce CI. A Python 3.15 gzip compatibility issue is recorded in the [implementation guide](docs/REFERENCE-IMPLEMENTATION.en.md#1-install-and-inspect). From a repository checkout, use a project virtual environment (POSIX commands):
 
 ```bash
-python3 -m venv .venv
+python3.12 -m venv .venv
 .venv/bin/python -m pip install -e '.[dev]'
 .venv/bin/python scripts/validate_templates.py
 .venv/bin/python -m pytest -q
-```
-
-검증기는 YAML 중복 key, JSON Schema, 목적·민감도·tool risk·writer 경계의 semantic invariant를 확인합니다. Gate evaluator는 증적에서 status와 digest receipt를 계산합니다.
-
-저장소의 모든 Markdown은 TRACE-DM 공통 metadata envelope를 partition manifest로 제공하며, 누락 문서·content hash·size·revision drift는 같은 검증에서 실패합니다. 문서를 변경한 뒤에는 다음 명령으로 content-derived field를 갱신합니다.
-
-```bash
-.venv/bin/python scripts/update_document_manifest.py
-```
-
-```bash
 .venv/bin/python scripts/evaluate_gate.py \
-  templates/gate-decision.yaml \
-  examples/gate-facts.yaml
+  templates/gate-decision.yaml examples/gate-facts.yaml
+.venv/bin/python examples/runtime_demo.py
 ```
 
-`.venv`는 저장소에 포함하지 않습니다.
+The examples use synthetic inputs and do not perform remote mutations. They do not connect a production model, cloud credentials, or an operational approval service. [Example guide](examples/README.md).
 
-## 라이선스
+Begin with `request-receipt.yaml`, `ticket.yaml`, `evidence-manifest.yaml`, and `gate-decision.yaml` in [`templates/`](templates/). Add document access/read/manifest contracts for TRACE-DM, and `agent-run.yaml` plus `tool-definition.yaml` for TRACE-AH. Use `templates/HANDOFF.md` for session continuity. The [documentation map](docs/README.md) links the optional contracts and detailed specifications.
 
-Copyright © 2026 D. JEONG.
+## Documentation and versions
 
-문서는 [CC BY-NC-ND 4.0](LICENSE)으로 제공합니다. 저작자 표시를 유지한 비상업적 원본 공유는 허용하며, 상업적 이용과 번역·각색 등 수정본 공유는 별도 허락이 필요합니다.
+| Read next | English | 한국어 |
+|---|---|---|
+| Documentation map and terminology | [Guide](docs/README.md) | [안내](docs/README.ko.md) |
+| Reference implementation | [Usage guide](docs/REFERENCE-IMPLEMENTATION.en.md) | [상세 가이드](docs/REFERENCE-IMPLEMENTATION.ko.md) |
+| Examples | [Examples](examples/README.md) | [예제](examples/README.ko.md) |
+| Contributions | [Guide and terms translation](CONTRIBUTING.en.md) | [기여 절차·합의 원문](CONTRIBUTING.md) |
+| Licensing | [Scope guide](LICENSING.en.md) | [적용 범위](LICENSING.md) |
 
-코드와 기계 처리 템플릿·설정은 [401SPAG Noncommercial Software License 1.1](LICENSE-CODE)을 따릅니다. 고지를 보존한 **비상업적 원본 재배포는 허용**하며, 상업적 이용·상업적 배포와 수정본의 외부 배포는 제한합니다. 비상업적 실행·연구·비공개 내부 수정도 허용하지만 사업 도입 검증이나 고객 PoC가 무료라는 이유만으로 비상업적 이용이 되지는 않습니다. 이 배포를 OSI 기준의 오픈소스로 표시하지 않습니다.
+The detailed Core, DM, AH, and migration specifications are currently in Korean and are linked in both documentation maps. English entry guides identify this explicitly. [Change history](CHANGELOG.md) and the [TRACE-DM document manifest](docs/managed-document-manifest.yaml) track repository documentation.
 
-공식 저장소로의 수정안 제출·리뷰에는 [목적을 한정한 기여 예외](CONTRIBUTING.md)가 있습니다. 새 기여의 리뷰 허락과 정식 통합·배포·상업적 재허락 동의는 구분합니다. 명시적 기여 합의로 특정된 수령인이 받는 추가 권한은 일반 수신자의 이용 허락과 다릅니다.
+Repository version markers are independent: Python package **2.0.1**, Core **1.1.0**, DM **0.2.0**, AH **0.1.0**, optional DM-MIGRATION **0.1.0**. These are not an announcement of a package-registry release. Package 2.0.x records licensing changes without changing the 1.2.0 execution logic. The earlier 1.2.0 hardening introduced breaking adapter requirements; preserve historical receipts/checkpoints and consult the implementation guide before migration.
 
-**기존 코드 1.0·CC BY 등으로 부여된 권한과 GitHub 약관상 독립적인 권한은 보존됩니다.** 공개 저장소의 열람·포크를 모두 공식 기여로 제한한다는 뜻은 아닙니다. 자료별 적용 범위와 문서 간 관계는 [라이선스 안내](LICENSING.md), [전환 기록](docs/LICENSING-TRANSITION.ko.md), [1.1 검토 결과](docs/LICENSING-REVIEW-1.1.ko.md)를 확인하세요. 별도 허락 문의: **mail@401spag.com**.
+## License and contributions
+
+Copyright © 2026 D. JEONG and the respective contributors.
+
+- **Documentation:** [CC BY-NC-ND 4.0](LICENSE). Noncommercial sharing of unadapted material is allowed with the required notices; commercial use or sharing translations/adaptations requires separate permission unless another applicable permission or exception covers it.
+- **Software and machine-readable contracts:** [401SPAG Noncommercial Software License 1.1](LICENSE-CODE). It permits noncommercial execution, study, private modification, and unmodified redistribution with notices. Commercial use/distribution and external distribution of modified software require separate permission unless otherwise authorized. A business pilot or customer proof of concept does not become noncommercial merely because it is free.
+- **Contributions:** purpose-limited official review permissions and an additional, explicit integration/sublicensing agreement are distinct. See [CONTRIBUTING](CONTRIBUTING.en.md).
+
+Earlier valid permissions, including CC BY and code license 1.0, and independent rights under applicable hosting-platform terms remain available for the material they cover. This distribution is publicly readable source with use and redistribution restrictions; it is not described as OSI-approved open source. The guides do not change the operative licenses or past agreements. [Scope and precedence](LICENSING.en.md) · [Separate permissions](mailto:mail@401spag.com).

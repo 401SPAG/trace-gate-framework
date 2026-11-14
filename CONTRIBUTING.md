@@ -1,5 +1,7 @@
 # Contributing
 
+**한국어** | [English guide and terms translation](CONTRIBUTING.en.md)
+
 TRACE Gate Framework에 대한 개선 제안과 기여를 환영합니다.
 
 ## 제안 원칙
@@ -15,7 +17,7 @@ TRACE Gate Framework에 대한 개선 제안과 기여를 환영합니다.
 1. Issue에서 문제와 기대 결과를 설명합니다.
 2. 작은 범위의 branch와 Pull Request를 사용합니다.
 3. 변경된 원칙에 대응하는 예시나 템플릿을 함께 갱신합니다.
-4. Markdown과 Mermaid 렌더링을 확인합니다.
+4. Markdown과 Mermaid 렌더링을 확인합니다. 국·영문 대응 문서의 의미와 링크도 함께 확인하고, 상세 규격의 일부만 번역한 경우 그 범위를 명시합니다.
 5. 호환성을 깨는 변경은 문서 버전과 migration note를 포함합니다.
 6. 하부 프레임워크 변경은 Framework ID, 자체 버전과 호환되는 TRACE core 버전을 명시합니다.
 
@@ -34,7 +36,7 @@ TRACE Gate Framework에 대한 개선 제안과 기여를 환영합니다.
 ## 로컬 템플릿 검증
 
 ```bash
-python3 -m venv .venv
+python3.12 -m venv .venv
 .venv/bin/python -m pip install -e '.[dev]'
 .venv/bin/python scripts/update_document_manifest.py
 .venv/bin/python scripts/validate_templates.py
