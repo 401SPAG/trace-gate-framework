@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — Optional DM/AH provenance profile 0.1.0 / package 2.1.0
+
+- Add source locators, relation direction checks, context-use receipts and run lineage as an opt-in schema alongside the existing Core, DM and AH contracts.
+- Add offline Docling, PROV, OpenLineage and Croissant adapters, host-bound read grants, cell review checks and optional PostgreSQL projection scripts.
+- Package the canonical contracts, examples and managed documents for installed validators.
+
 ## Unreleased — Bilingual documentation (2026-11-14)
 
 - Added English/Korean entry READMEs, documentation maps and examples, an English implementation guide, and English contribution/licensing reading translations.

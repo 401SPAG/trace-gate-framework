@@ -11,8 +11,10 @@ from typing import Any
 import jsonschema
 import yaml
 
+from .resources import resource_root
 
-ROOT = Path(__file__).resolve().parents[2]
+
+ROOT = resource_root()
 SCHEMA_PATH = ROOT / "schemas" / "trace-gate.schema.json"
 TEMPLATE_DIR = ROOT / "templates"
 MANAGED_DOCUMENT_MANIFEST = ROOT / "docs" / "managed-document-manifest.yaml"

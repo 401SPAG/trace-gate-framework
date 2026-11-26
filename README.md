@@ -20,6 +20,8 @@ This repository contains specifications, machine-readable contracts, a Python re
 
 A **Gate** is an evidence-based decision point, not an acronym. A passing evaluation alone does not grant execution or promotion authority. The five TRACE principles here are distinct from other projects named TRACE.
 
+The optional [DM/AH provenance profile](docs/subframeworks/TRACE-DOCUMENT-MANAGEMENT.ko.md#23-선택적-근거-위치실행-계보-프로필-010) binds source locations, selected context, citations and execution records. To check the bundled example offline from the checkout, run `python scripts/validate_provenance.py examples/provenance-bundle.json`.
+
 ## Three responsibilities
 
 | Area | Responsibility |
@@ -78,7 +80,7 @@ Begin with `request-receipt.yaml`, `ticket.yaml`, `evidence-manifest.yaml`, and 
 
 The detailed Core, DM, AH, and migration specifications are currently in Korean and are linked in both documentation maps. English entry guides identify this explicitly. [Change history](CHANGELOG.md) and the [TRACE-DM document manifest](docs/managed-document-manifest.yaml) track repository documentation.
 
-Repository version markers are independent: Python package **2.0.1**, Core **1.1.0**, DM **0.2.0**, AH **0.1.0**, optional DM-MIGRATION **0.1.0**. These are not an announcement of a package-registry release. Package 2.0.x records licensing changes without changing the 1.2.0 execution logic. The earlier 1.2.0 hardening introduced breaking adapter requirements; preserve historical receipts/checkpoints and consult the implementation guide before migration.
+Repository version markers are independent: Python package **2.1.0**, Core **1.1.0**, DM **0.2.0**, AH **0.1.0**, optional DM-MIGRATION **0.1.0**. These are not an announcement of a package-registry release. Package 2.0.x records licensing changes without changing the 1.2.0 execution logic. The earlier 1.2.0 hardening introduced breaking adapter requirements; preserve historical receipts/checkpoints and consult the implementation guide before migration.
 
 ## License and contributions
 
