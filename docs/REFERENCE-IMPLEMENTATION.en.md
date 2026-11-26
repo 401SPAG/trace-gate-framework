@@ -6,7 +6,7 @@ Use this guide to install the reference implementation and connect your adapters
 
 ## 1. Install and inspect
 
-Package metadata requires Python 3.11+. CI uses Python 3.12; the commands below select that version. From the repository root:
+Package metadata requires Python 3.11+. CI runs the full test suite on Python 3.12 and 3.15. To run the commands below on 3.15, create the virtual environment with `python3.15`. Run these commands from the repository root.
 
 ```bash
 python3.12 -m venv .venv
@@ -17,7 +17,7 @@ python3.12 -m venv .venv
 
 The validator checks duplicate YAML keys, JSON Schema, semantic constraints and managed-document coverage/digests. The tests use synthetic fixtures. No live model provider, remote shell, cloud credentials, or operational data is bundled. Review [permitted use](../LICENSING.en.md) before running or adapting the software.
 
-**Known compatibility limit:** the current code fails two gzip migration-archive tests in the observed Python 3.15 environment because `GzipFile` infers a write mode for the temporary stream. Use the CI Python 3.12 environment for these workflows. The package metadata currently has no upper Python bound; it is not evidence that all newer interpreters have passed validation. This documentation update does not repair the archive implementation.
+The migration extractor opens the verified gzip snapshot with `mode="rb"`. The archive tests check that restoration preserves the source bytes and that extraction stops at the expanded-size limit before parsing tar headers.
 
 ## 2. Components
 
