@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — Documentation and CI (2026-11-27)
+
+- Updated the bilingual guides with reproducible Gate and runtime examples. [PR #13](https://github.com/401SPAG/trace-gate-framework/pull/13)
+- Updated checkout to v7.0.1 and setup-python to v7.1.0 for Node.js 24. The workflow tests the Python package on Python 3.12. [PR #14](https://github.com/401SPAG/trace-gate-framework/pull/14)
+
 ## Unreleased — Optional DM/AH provenance profile 0.1.0 / package 2.1.0
 
 - Add source locators, relation direction checks, context-use receipts and run lineage as an opt-in schema alongside the existing Core, DM and AH contracts.

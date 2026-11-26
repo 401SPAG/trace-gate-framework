@@ -45,7 +45,7 @@ Preserve the text and covered commit at the time of agreement; later edits do no
 
 ## Distribution metadata
 
-Python package 2.0.1 identifies clarification of code license 1.1 and its scope. It retains package 2.0.0 execution logic and Core 1.1.0, DM 0.2.0 and AH 0.1.0 contracts. A version change does not extinguish previous permissions.
+Package 2.0.1 marked the clarification of code license 1.1 and its scope. That change retained the execution logic from 2.0.0 and the Core 1.1.0, DM 0.2.0 and AH 0.1.0 contracts. See the [package metadata](pyproject.toml) for the current package version. A version change does not extinguish previous permissions.
 
 The package-level expression is `CC-BY-4.0 AND CC-BY-NC-ND-4.0 AND LicenseRef-401SPAG-NC-ND-1.1`. It summarizes material-specific terms; it does not stack every condition onto every file or erase independent earlier grants such as code license 1.0. Actual scope follows notices and the transition record.
 
