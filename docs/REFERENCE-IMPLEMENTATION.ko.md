@@ -4,12 +4,12 @@
 
 ## 1. 목적과 범위
 
-이 저장소는 규격 문서뿐 아니라 TRACE 계약을 검증하고 agent 실행 경계를 시험할 수 있는 최소 참조 구현을 제공한다. 실제 LLM provider, 원격 shell, cloud credential과 운영 데이터는 포함하지 않는다.
+참조 구현으로 TRACE 계약을 검증하고 에이전트가 도구를 호출하거나 중단된 작업을 재개하는 조건을 시험할 수 있다. 테스트는 합성 입력을 사용한다. 실제 LLM 서비스, 원격 셸, 클라우드 자격 증명, 운영 데이터는 시험 환경에 포함되지 않는다.
 
-참조 구현의 목적은 다음 두 가지다.
+검증기와 런타임은 서로 다른 질문에 답한다.
 
-1. TRACE status가 사람이 적은 주장에 머무르지 않도록 schema·semantic·Gate 검증을 자동화한다.
-2. 제품별 agent runtime이 공통으로 따라야 할 tool, context, state와 subagent 계약의 실행 가능한 기준을 제공한다.
+1. 검증기는 입력의 스키마와 의미 제약을 확인하고 평가기는 정책과 입력값에서 Gate 상태를 계산한다.
+2. 런타임은 제품별 어댑터가 도구, 문맥, 실행 상태, 하위 에이전트를 어떻게 처리해야 하는지 실행 예제로 보여 준다.
 
 ## 2. 설치와 검증
 
@@ -22,7 +22,7 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest -q
 ```
 
-CI는 같은 검증을 Python 3.12에서 수행한다.
+[CI 워크플로](../.github/workflows/validate.yml)에는 위 검사에 이어 wheel과 소스 배포본을 각각 새 환경에 설치해 검증하는 단계가 있다.
 
 **확인된 호환성 한계:** 관측한 Python 3.15 환경에서는 `GzipFile`이 임시 스트림을 쓰기 모드로 해석하여 gzip 이전 아카이브 테스트 2건이 실패한다. 이 작업에는 CI의 Python 3.12 환경을 사용한다. 현재 패키지 메타데이터에는 Python 상한이 없지만, 모든 최신 인터프리터의 검증 통과를 의미하지는 않는다. 이번 문서 갱신에서 아카이브 구현 자체를 수정한 것은 아니다.
 
@@ -57,7 +57,7 @@ python scripts/evaluate_gate.py \
   examples/gate-facts.yaml
 ```
 
-Evaluator는 다음을 보장한다.
+영수증의 상태와 해시는 다음 기준으로 해석한다.
 
 - requirement key를 정렬해 결정적으로 평가
 - 필수 fact 또는 evidence reference 누락 시 `blocked` (reference 진위는 별도 resolver 책임)

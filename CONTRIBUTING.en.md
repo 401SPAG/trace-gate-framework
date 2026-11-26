@@ -9,7 +9,7 @@ Improvements to TRACE-GATE are welcome. This English guide translates the curren
 - Explain the actual failure pattern a new procedure addresses.
 - Make Gates mechanically decidable where possible.
 - Separate implementation completion from operating-authority promotion.
-- Keep failures and unknown outcomes visible.
+- Record failures and unknown outcomes. When documenting a result, link to the test, fixture, or run record for that version and name the environment where it was observed.
 - Do not include secrets, personal data, or internal system identifiers in evidence examples.
 
 ## Change workflow

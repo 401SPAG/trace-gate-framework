@@ -2,9 +2,9 @@
 
 **English** | [한국어](README.ko.md)
 
-An evidence-based framework for software delivery governance: connect requests, authorized scope, canonical document context, observed effects, and permission to continue across interrupted agent sessions.
+TRACE-GATE records the change an agent was asked to make, who approved which part of it, which document revision the agent used, and what actually changed. If a write times out, the next session can use that record to investigate the outcome before anyone authorizes another attempt.
 
-This repository contains specifications, machine-readable contracts, a Python reference implementation, and synthetic tests. The architecture is a research proposal; the implementation exercises selected contracts. Passing its tests does not establish production safety, distributed authorization, or operational effectiveness.
+The specifications propose an architecture for governing software delivery. The Python reference implementation and its machine-readable contracts let you test selected parts with synthetic inputs. Production safety, distributed authorization, and operational effectiveness require evidence from the deployment. [Reference implementation](docs/REFERENCE-IMPLEMENTATION.en.md#8-evidence-and-deployment-limits)
 
 **Official repository:** [401SPAG/trace-gate-framework](https://github.com/401SPAG/trace-gate-framework) · [401SPAG](https://401spag.com) · [Contact](mailto:mail@401spag.com)
 
@@ -38,7 +38,7 @@ flowchart LR
     AH -->|Execution evidence| CORE
 ```
 
-These are logical responsibilities and can share a deployment. Summaries and search results are derived context; relevance does not make them authoritative. Optional semantic retrieval, multi-agent coordination, and TRACE-DM-MIGRATION extend particular use cases.
+Core, DM, and AH can run in one deployment. When a search result or summary informs a decision, trace it back to the canonical revision. Semantic retrieval, multi-agent coordination, and TRACE-DM-MIGRATION are optional.
 
 ## Conditions to preserve
 
@@ -48,7 +48,7 @@ These are logical responsibilities and can share a deployment. Summaries and sea
 - Resume only after approval, context, execution history, scope, and original limits remain valid. A checkpoint alone is not permission to resume.
 - Supply trusted observation and approval resolvers, protected evidence and independent ledger anchors, and host-enforced concurrency controls where required.
 
-The reference runtime is a single-process example. Its Python handler timeout is checked after the handler returns; it does not forcibly stop a running tool. Production executors must provide their own isolation, deadlines, and effect reconciliation. See the [implementation guide](docs/REFERENCE-IMPLEMENTATION.en.md).
+The single-process reference runtime checks a Python handler’s timeout only after the handler returns. A tool can therefore change state after its deadline. A production executor must enforce isolation and deadlines and check the target for changes. [Implementation guide](docs/REFERENCE-IMPLEMENTATION.en.md)
 
 ## Start locally
 
@@ -64,7 +64,7 @@ python3.12 -m venv .venv
 .venv/bin/python examples/runtime_demo.py
 ```
 
-The examples use synthetic inputs and do not perform remote mutations. They do not connect a production model, cloud credentials, or an operational approval service. [Example guide](examples/README.md).
+The examples run locally with synthetic inputs. You can follow a Gate decision and an agent run without a production model, cloud credentials, a remote write, or an approval service. [Example guide](examples/README.md)
 
 Begin with `request-receipt.yaml`, `ticket.yaml`, `evidence-manifest.yaml`, and `gate-decision.yaml` in [`templates/`](templates/). Add document access/read/manifest contracts for TRACE-DM, and `agent-run.yaml` plus `tool-definition.yaml` for TRACE-AH. Use `templates/HANDOFF.md` for session continuity. The [documentation map](docs/README.md) links the optional contracts and detailed specifications.
 
@@ -78,7 +78,7 @@ Begin with `request-receipt.yaml`, `ticket.yaml`, `evidence-manifest.yaml`, and 
 | Contributions | [Guide and terms translation](CONTRIBUTING.en.md) | [기여 절차·합의 원문](CONTRIBUTING.md) |
 | Licensing | [Scope guide](LICENSING.en.md) | [적용 범위](LICENSING.md) |
 
-The detailed Core, DM, AH, and migration specifications are currently in Korean and are linked in both documentation maps. English entry guides identify this explicitly. [Change history](CHANGELOG.md) and the [TRACE-DM document manifest](docs/managed-document-manifest.yaml) track repository documentation.
+Both documentation maps link to the full Core, DM, AH, and migration specifications in Korean. For past changes, see the [changelog](CHANGELOG.md). For the revision and hash of a particular document, see the [TRACE-DM document manifest](docs/managed-document-manifest.yaml).
 
 Repository version markers are independent: Python package **2.1.0**, Core **1.1.0**, DM **0.2.0**, AH **0.1.0**, optional DM-MIGRATION **0.1.0**. These are not an announcement of a package-registry release. Package 2.0.x records licensing changes without changing the 1.2.0 execution logic. The earlier 1.2.0 hardening introduced breaking adapter requirements; preserve historical receipts/checkpoints and consult the implementation guide before migration.
 

@@ -2,7 +2,7 @@
 
 **English** | [한국어 상세 가이드](REFERENCE-IMPLEMENTATION.ko.md) · [Documentation map](README.md)
 
-This guide summarizes how to run and connect the reference implementation. The [Korean detailed guide](REFERENCE-IMPLEMENTATION.ko.md) retains the complete conformance table and migration details; the Python source, schemas, and tests are the executable reference. This guide is not a production certification or a complete translation of the detailed specifications.
+Use this guide to install the reference implementation and connect your adapters. The Python source, schemas, and tests define the behavior you can check locally. The [Korean detailed guide](REFERENCE-IMPLEMENTATION.ko.md) includes the full conformance table and migration details. Production use requires verification in the target environment.
 
 ## 1. Install and inspect
 
@@ -41,7 +41,7 @@ The validator checks duplicate YAML keys, JSON Schema, semantic constraints and 
   templates/gate-decision.yaml examples/gate-facts.yaml
 ```
 
-Missing required facts or evidence references block evaluation; unmet thresholds fail; satisfied requirements pass. The receipt includes canonical input and receipt digests, evaluator identity and version. Changing `evaluated_at` changes the receipt digest; replay requires the same time, policy and facts.
+Read the receipt’s status first. Missing required facts or evidence references produce `blocked`. A missed threshold produces `fail`. When all requirements are met, the evaluator returns `pass`. The receipt records the evaluator ID and version, the canonical input digest, and its own digest. To reproduce the receipt, use the same policy, facts, and `evaluated_at` time.
 
 Evaluator 1.1.1 rejects non-finite values, non-JSON objects, malformed evidence references, and boolean/numeric equivalence. `facts_schema` constrains types, units and ranges. A `fail` or `blocked` receipt grants no new authority, and `pass` is not itself permission to execute.
 
