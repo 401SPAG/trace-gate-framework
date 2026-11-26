@@ -242,7 +242,7 @@ flowchart LR
     TK["Ticket"] -->|implements| CH
     CH -->|produces| RV["Document Revision"]
     RV -->|belongs to| RS["Canonical RecordSet"]
-    RV -->|derived_from| PR["Summary / Context Projection"]
+    PR["Summary / Context Projection"] -->|derived_from| RV
     VR["Validation Result"] -->|validates| RV
     EV["Raw Evidence"] -->|evidences| VR
     CP["Replica"] -->|replicates| EV
@@ -762,6 +762,122 @@ TRACE core와 공유해야 하는 integration point:
 - embedding provider adapter, group registry와 semantic retrieval receipt 계약
 
 패키징과 버전 변경에서도 TRACE-DM의 정본·projection 분리, lineage, fail-closed, 최소 공개와 historical rewrite 금지 원칙은 유지한다.
+
+## 23. 선택적 근거 위치·실행 계보 프로필 0.1.0
+
+이 프로필은 TRACE-DM 0.2.0·TRACE core 1.1.x에 추가하는 opt-in 계약이다.
+기존 정본·lifecycle·Gate ID·승인 범위는 변경하지 않는다. `schemas/provenance.schema.json`,
+`src/trace_gate/provenance.py`, `provenance_adapters.py`와 공개 합성 예제를 함께 배포한다.
+프로필이 없는 과거 문서는 원래 적합성 수준을 유지한다. 무손실 추출·의미 정확성·실행 권한을
+구조 검증 결과로 인증하지 않는다.
+
+### 23.1 관계와 원문 위치
+
+`derived_from`은 결과→원천, `part_of`는 자식→부모, `next`는 앞→뒤,
+`supersedes`는 같은 논리 문서의 새 revision→이전 revision이다. `supports/refutes/limits`는
+근거→주장이다. `references`·`mentions`는 생성·지지 관계가 아니다. 명시적 양끝 revision과
+scope를 저장하며 순환·중복·dangling reference를 거부한다. 모델 추출은 `candidate`이고,
+`reviewed`에는 양끝 해시·관계·scope에 정확히 결합된 외부 신뢰 검토 receipt가 필요하다.
+
+Locator는 원본 revision entity ID와 SHA에 결합한다. text는 Unicode codepoint 범위,
+JSON은 RFC 6901 pointer, PDF는 page/bbox/page size/좌표 원점, table은 table/row/column을
+사용한다. 해시가 같아도 문서·tenant identity를 합치지 않는다. 원문 bytes 대조 없이 좌표가
+그럴듯하다는 이유로 검증된 위치로 표시하지 않는다. 텍스트와 JSON은 exact content 검증,
+PDF·표는 별도 시각·표 검증을 요구한다. 좌표 없는 문서 전체를 막지 않고 요청 profile의
+필요 locator 수준을 적용한다. 위치 기반 검색을 쓰지 않는 작업에 새 승인 Gate를 강제하지 않는다.
+
+### 23.2 실제 사용 문맥과 수치 자료
+
+검색 후보, 실제 포함 문맥, 출력 인용, 의미적 지지는 서로 다른 단계다. Context-use receipt는
+candidate/selected/cited ID, query/index/bundle digest, cutoff, selected bytes를 남긴다.
+기존 Access Intent·ReadProfile에서 확인한 admitted IDs만 후보와 그래프 확장에 사용한다.
+미래 자료·동일 ID 중복·허용 범위 밖 확장·예산 초과를 거부한다. byte 한도는 모델의 실제
+token 및 chat template 계산을 대신하지 않는다. 인용이 있다는 사실은 지지 판정이 아니다.
+
+수치 계열은 문서 청크로 강제 변환하지 않는다. API 관측의 source revision·JSON pointer,
+관측일·입수일, level/change/ratio 구분, 단위·기준·공식 버전은 수치 adapter가 보존한다.
+예를 들어 월간 증감은 같은 vintage의 두 수준값과 차분 활동을 입력으로 연결한다.
+원값이나 역사적 결정을 덮어쓰지 않으며 영향 분석은 `review-needed` 후보만 반환한다.
+
+### 23.3 선택 도구와 교환 형식
+
+- Docling: 버전이 고정된 변환 결과를 가져오는 adapter다. 문서 schema 1.10.0의 지원 부분만
+  허용하고 미지원 body child, 다중 페이지 locator, 불완전 coverage는 명시 오류로 남긴다.
+  문서 계층과 형제 순서를 보존하며 없는 좌표·신뢰도를 생성하지 않는다. 실제 변환기·OCR
+  설치는 선택 사항이고 모델 다운로드와 원격 처리는 운영 adapter에서 별도 통제한다.
+  라이브러리 버전과 문서 schema 버전은 별개이며, `export_to_dict()`의 공개 `$ref` 형식만
+  받는다. Python 내부 `cref` dump를 교환 형식으로 사용하지 않는다.
+- Lexical graph: 문서·절·블록·청크·개체 관계다. HNSW 같은 ANN 검색 내부 그래프와 다르다.
+  `bounded_neighbors`는 허용된 구조 이웃만 반환하며 벡터 검색·의미 정확도 평가를 제공하지 않는다.
+- PROV: 원본·청크·모델 파일·결과는 Entity, parse/retrieve/infer는 Activity,
+  실행 소프트웨어·담당자는 Agent로 연결한다. 모델 파일 버전과 책임 주체를 혼동하지 않는다.
+  후보 관계의 상태와 검토 범위를 export에서도 유지한다. 승인 관계를 PROV만으로 대체하지 않는다.
+- OpenLineage: 기존 실행을 START/COMPLETE/FAIL/ABORT, Job/Run/Dataset으로 내보낸다.
+  namespace+run identity에서 UUID를 결정적으로 만든다. export만 제공하며 네트워크 전송·서버를
+  자동 활성화하지 않는다. 실패 실행을 COMPLETE로 바꾸지 않는다.
+- Croissant: metadata JSONL과 descriptor를 생성한다. source family의 split 혼합을 거부하고
+  rights/review reference와 목적 허용 목록을 보존한다. 라이선스 URL만으로 훈련 권한을 인정하지
+  않으며 Gold 승격·훈련·공개 업로드는 제공하지 않는다. 라벨 검토·중복 검사는 호스트 책임이다.
+
+실행 계보에는 코드·설정 hash, 입력/출력 revision, 실행 주체, UTC 시작·종료·상태를 기록한다.
+raw prompt/response를 공통 로그에 복제하지 않는다. 정확한 재실행이 필요하면 허용된 보관소의
+고정 입력 참조와 권한을 연결하고, hash만 있을 때는 재실행 불가능 범위를 명시한다.
+
+### 23.4 적용·복구·검증 순서
+
+1. 관계 방향과 additive schema를 고정하고 기존 계약 회귀를 확인한다.
+2. 소수 기존 자료에 위치·사용 문맥·run sidecar를 생성해 원본 해시와 대조한다.
+3. 문서 형식별로 parser 정확도·표 셀 일치·누락률을 측정하고 기존 파서와 비교한다.
+4. 고정 질의·사람 검토 정답으로 exact/구조 확장/semantic 검색을 비교한다.
+5. 라이선스·라벨·split이 검증된 데이터셋만 내보내며 승인된 관측 환경에만 이벤트를 연결한다.
+
+합성 테스트는 구조 계약, 기존 원문 pilot은 원문 위치·계보를 검증한다. 두 결과 모두 RAG 품질,
+PDF/OCR 무손실, DB 운영, 접근 정책 집행 전체, production 승격의 증거가 아니다.
+PostgreSQL 선택 DDL은 `schemas/provenance-postgresql.sql`로 제공하되 운영 DB에 자동 적용하지 않는다.
+오류 시 새 sidecar만 비활성화하고 기존 정본·exact retrieval·실패 기록을 유지한다.
+
+오프라인 구조 확인: `python scripts/validate_provenance.py examples/provenance-bundle.json`.
+`--trusted-reviews`는 호스트가 이미 인증한 exact binding만 받을 수 있으며 CLI 자체에는 서명
+검증·승인 발급 기능이 없다. `pilot_provenance.py`와 `pilot_docling_html.py`는 기존 저장소의
+불변 blob만 읽고 새로운 독립 출력 경로에 결과를 저장한다. 후자는 HTML 전용이고 원격 fetch·
+렌더링·이미지 fetch를 끈다. 단순 문구 보존율은 파싱 정확도 또는 의미 정확도 점수가 아니다.
+
+교환 검증 기준은 OpenLineage 2-0-2 공식 JSON Schema와 Croissant 1.0 descriptor의
+`mlcroissant` 실제 record 읽기다. JSONL 열은 `extract.column`으로 지정한다. 선택적 출판
+metadata가 없는 내부 패키지의 경고를 숨기거나 임의 발행일로 메우지 않는다. 외부 도구 설치는
+프레임워크 필수 의존성에 포함하지 않는다.
+
+### 23.5 근거 교환·접근 검증 계약
+
+wheel과 sdist에 canonical schemas/templates/관리 문서를 포함한다. 설치 환경에서는
+`trace_gate.resources`가 포함된 리소스를 선택하며 현재 디렉터리에 의존하지 않는다.
+저장소 밖 설치 검증과 sdist→wheel 리소스 해시 일치를 배포 회귀에 포함한다.
+
+PROV와 OpenLineage는 독립적인 투영이다. 실행 ID·코드/설정 해시를 보존하지만 일반 소비자가
+모든 TRACE 필드를 이해한다고 가정하지 않는다. `provenance_exchange_package`는 원본 bundle
+sidecar와 투영을 각각 해시로 결합하고, `restore_provenance_exchange`는 원본 검증과 결정론적
+투영 재생성 대조를 수행한다. locator·tenant·관계 scope 복원에는 sidecar가 필요하다.
+해시는 발신자 인증이 아니며 검토 승인은 외부 신뢰 기록으로 다시 검증한다. sidecar는 원문의
+접근 등급을 유지하며 exporter는 전송 권한을 부여하지 않는다.
+
+`authorized_context`는 호스트가 이미 인증한 principal 및 기존 정책 결정으로 발급한 읽기
+grant를 검증한다. verifier key는 신뢰된 서버 구성에서만 주입한다. 모델 입력에서 key나
+인증 principal을 받지 않는다. grant는 principal·tenant·목적·질의·ReadProfile·bundle 해시·
+개별 revision/SHA·cutoff·byte 한도·최대 300초 유효기간에 결합된다. 범위 밖 그래프 확장은
+실패한다. 유효기간 내 재사용 가능한 읽기 허용이며 단회 실행 lease나 검토 승인 발급기가 아니다.
+기존 Access Intent·ReadProfile 정책 결정과 인증 제공자를 대체하지 않는다.
+
+`provenance-postgresql-access.sql`은 별도 opt-in RLS 프로필이다. 실제 DB 로그인
+`SESSION_USER`의 관리자 등록 tenant만 읽도록 하며, 여러 tenant를 포함할 수 있는
+bundle.payload에는 reader 권한을 주지 않는다. reader의 writer/owner/BYPASSRLS 권한 및
+다른 tenant 로그인 membership은 금지한다. 운영 연결 풀의 세션 인증 모델과 실제 사용자
+연결은 별도로 검증해야 한다.
+
+OCR 검증은 페이지에 숫자가 있다는 사실로 셀 정확도를 계산하지 않는다. `evaluate_cells`는
+page/table/row/column과 token/unit/period/basis를 정확히 대조한다. 행·열이 확인되지 않은
+OCR은 정렬 미검증으로 남기고, assistant 전사·합성 시험을 독립적인 사람 Gold로 승격하지 않는다.
+인증된 독립 검토와 source/expected 해시 결합이 없는 일치는 운영 적합성 PASS가 아니다.
+언어별 실문서 평가·실제 접근 경로·지속 부하가 남으면 각 Gate를 분리해 기록한다.
 
 ## 라이선스
 

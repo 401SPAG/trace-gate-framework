@@ -1,0 +1,142 @@
+{
+  "schema_version": "0.1.0",
+  "profile_id": "TRACE.PROVENANCE.EXAMPLE",
+  "entities": [
+    {
+      "id": "SRC.1",
+      "artifact_id": "ART.SRC.1",
+      "revision": 1,
+      "kind": "source",
+      "sha256": "30ed6a816742a7ca2e32d89d59943e6f7672a6e6993b136584baac791c07c6d6",
+      "size_bytes": 46,
+      "media_type": "text/plain",
+      "tenant_id": "example",
+      "sensitivity": "public",
+      "observed_at": "2026-01-01T00:00:00Z",
+      "locator": null,
+      "ordinal": null
+    },
+    {
+      "id": "BLOCK.1",
+      "artifact_id": "ART.BLOCK.1",
+      "revision": 1,
+      "kind": "block",
+      "sha256": "30ed6a816742a7ca2e32d89d59943e6f7672a6e6993b136584baac791c07c6d6",
+      "size_bytes": 46,
+      "media_type": "text/plain",
+      "tenant_id": "example",
+      "sensitivity": "public",
+      "observed_at": "2026-01-01T00:00:00Z",
+      "locator": {
+        "source_id": "SRC.1",
+        "source_sha256": "30ed6a816742a7ca2e32d89d59943e6f7672a6e6993b136584baac791c07c6d6",
+        "selector": {
+          "type": "text",
+          "start": 0,
+          "end": 46,
+          "encoding": "unicode_codepoints"
+        }
+      },
+      "ordinal": 0
+    },
+    {
+      "id": "CHUNK.1",
+      "artifact_id": "ART.CHUNK.1",
+      "revision": 1,
+      "kind": "chunk",
+      "sha256": "30ed6a816742a7ca2e32d89d59943e6f7672a6e6993b136584baac791c07c6d6",
+      "size_bytes": 46,
+      "media_type": "text/plain",
+      "tenant_id": "example",
+      "sensitivity": "public",
+      "observed_at": "2026-01-01T00:00:00Z",
+      "locator": {
+        "source_id": "SRC.1",
+        "source_sha256": "30ed6a816742a7ca2e32d89d59943e6f7672a6e6993b136584baac791c07c6d6",
+        "selector": {
+          "type": "text",
+          "start": 0,
+          "end": 46,
+          "encoding": "unicode_codepoints"
+        }
+      },
+      "ordinal": 0
+    },
+    {
+      "id": "CLAIM.1",
+      "artifact_id": "ART.CLAIM.1",
+      "revision": 1,
+      "kind": "claim",
+      "sha256": "4b2849674721175996c248ea60c2402e3297812f19514fa1903a000860cb5361",
+      "size_bytes": 24,
+      "media_type": "text/plain",
+      "tenant_id": "example",
+      "sensitivity": "public",
+      "observed_at": "2026-01-01T00:00:00Z",
+      "locator": null,
+      "ordinal": null
+    }
+  ],
+  "relations": [
+    {
+      "from": "BLOCK.1",
+      "to": "SRC.1",
+      "type": "part_of",
+      "status": "structural",
+      "review_ref": null,
+      "scope": "synthetic example; not current economic data"
+    },
+    {
+      "from": "CHUNK.1",
+      "to": "BLOCK.1",
+      "type": "part_of",
+      "status": "structural",
+      "review_ref": null,
+      "scope": "synthetic example; not current economic data"
+    },
+    {
+      "from": "CHUNK.1",
+      "to": "SRC.1",
+      "type": "derived_from",
+      "status": "structural",
+      "review_ref": null,
+      "scope": "synthetic example; not current economic data"
+    },
+    {
+      "from": "CHUNK.1",
+      "to": "CLAIM.1",
+      "type": "supports",
+      "status": "candidate",
+      "review_ref": null,
+      "scope": "synthetic example; not current economic data"
+    }
+  ],
+  "agents": [
+    {
+      "id": "AGENT.PARSER",
+      "kind": "software",
+      "version": "example/1"
+    }
+  ],
+  "runs": [
+    {
+      "id": "RUN.PARSE.1",
+      "job_id": "JOB.PARSE",
+      "stage": "parse",
+      "status": "COMPLETE",
+      "started_at": "2026-01-01T00:00:00Z",
+      "ended_at": "2026-01-01T00:00:01Z",
+      "inputs": [
+        "SRC.1"
+      ],
+      "outputs": [
+        "BLOCK.1"
+      ],
+      "agents": [
+        "AGENT.PARSER"
+      ],
+      "code_sha256": "d4c267dbe275797e6291056ca8d7091f50a2f48ce5aba7fe502a14e3c2ee2813",
+      "parameters_sha256": "1e28f6dba8456d2c98ef3da5bda8d2793bd76ef221a3bff70fa8d2beb0b8adc2"
+    }
+  ]
+}

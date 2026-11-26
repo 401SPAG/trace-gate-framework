@@ -20,6 +20,8 @@
 
 **Gate**는 증거에 근거한 의사결정 지점이며 별도 약어가 아닙니다. 평가 통과 자체가 실행·승격 권한을 부여하지는 않습니다. 여기서 TRACE의 다섯 원칙은 같은 이름을 사용하는 다른 프로젝트와 별개입니다.
 
+선택적 [DM/AH 근거 위치·실행 계보 프로필](docs/subframeworks/TRACE-DOCUMENT-MANAGEMENT.ko.md#23-선택적-근거-위치실행-계보-프로필-010)은 원문 위치와 실제 입력 문맥, 인용, 실행 기록을 연결합니다. 체크아웃에서 `python scripts/validate_provenance.py examples/provenance-bundle.json`으로 예제를 검증할 수 있습니다.
+
 ## 세 가지 책임
 
 | 영역 | 책임 |
@@ -78,7 +80,7 @@ python3.12 -m venv .venv
 
 Core·DM·AH·문서 이전(migration)의 상세 규격은 현재 국문이며 양쪽 문서 안내에서 연결합니다. 영문 입문 문서에도 이 범위를 표시했습니다. [변경 이력](CHANGELOG.md)과 [TRACE-DM 문서 manifest](docs/managed-document-manifest.yaml)에서 저장소 문서를 추적합니다.
 
-저장소의 버전 표기는 서로 독립적입니다. Python 패키지 **2.0.1**, Core **1.1.0**, DM **0.2.0**, AH **0.1.0**, 선택적 DM-MIGRATION **0.1.0**입니다. 패키지 레지스트리 출시를 알리는 표기는 아닙니다. 패키지 2.0.x는 1.2.0의 실행 로직을 유지하며 라이선스 변경을 구별합니다. 앞선 1.2.0 계약 강화에는 adapter 호환성을 깨는 변경이 있으므로 과거 receipt·checkpoint를 보존하고 구현 가이드를 확인해야 합니다.
+저장소의 버전 표기는 서로 독립적입니다. Python 패키지 **2.1.0**, Core **1.1.0**, DM **0.2.0**, AH **0.1.0**, 선택적 DM-MIGRATION **0.1.0**입니다. 패키지 레지스트리 출시를 알리는 표기는 아닙니다. 패키지 2.0.x는 1.2.0의 실행 로직을 유지하며 라이선스 변경을 구별합니다. 앞선 1.2.0 계약 강화에는 adapter 호환성을 깨는 변경이 있으므로 과거 receipt·checkpoint를 보존하고 구현 가이드를 확인해야 합니다.
 
 ## 라이선스와 기여
 

@@ -271,6 +271,18 @@ Subagent Task Contract는 다음을 고정한다.
 7. checkpoint/resume과 idempotency를 장애 테스트한다.
 8. 실제 필요성이 확인될 때만 bounded subagent를 도입한다.
 
+## 17. 선택적 실행 계보 연결
+
+TRACE-DM 근거 위치·실행 계보 프로필 0.1.0을 사용하는 run은 검색 후보와 실제 포함한 문맥,
+인용한 근거를 구분한 receipt를 Context Pack digest와 연결한다. 모델·프롬프트 템플릿도
+고정 revision Entity로 기록하고 parse/retrieve/infer/verify/publish를 별도 Activity로 남긴다.
+모델 파일의 해시는 실행 주체나 인간 승인자의 identity를 대신하지 않는다.
+
+실패한 inference와 규칙 기반 기본 결과의 성공 발행은 서로 다른 run 결과다. OpenLineage로
+내보낼 때도 실패를 숨기지 않는다. PROV·OpenLineage export는 기존 receipt의 projection이며
+새 승인, 재실행, 서비스 활성화를 발생시키지 않는다. 검색·파싱 구조 PASS와 내용 검증을
+분리한다. 기존 동일 입력 평가의 검토자·cutoff·단위·토큰·모델 권한 Gate는 유지한다.
+
 ## 라이선스
 
 Copyright © 2026 D. JEONG. [CC BY-NC-ND 4.0](../../LICENSE)에 따라 제공한다. 저작자 표시를 유지한 비상업적 원본 공유를 허용하며, 상업적 이용과 수정본 공유에는 별도 허락이 필요하다. 기존에 부여된 CC BY 등 권한은 보존한다. 코드 예시와 신규 조건의 세부 [적용 범위](../../LICENSING.md)를 확인한다.

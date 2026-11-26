@@ -1,0 +1,7 @@
+include src/_trace_build.py
+include *.md
+recursive-include schemas *.json *.sql
+recursive-include templates *.yaml *.md
+recursive-include docs *.md *.yaml *.json
+recursive-include examples *.py *.json *.yaml *.md
+recursive-include scripts *.py
