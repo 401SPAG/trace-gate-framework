@@ -19,7 +19,7 @@ The [sample facts](gate-facts.yaml) report a 99.5% success rate, zero duplicate 
 .venv/bin/python examples/runtime_demo.py
 ```
 
-The [demo](runtime_demo.py) calls the local `status.read` tool for the collector. The tool returns `staging-only`, and the verifier checks that the scripted answer contains that text. The printed result records this local run. The demo needs no live model, performs no remote writes, and grants no operating authority.
+The [demo](runtime_demo.py) calls the local `status.read` tool for the collector. The tool returns a record whose `authority` field is `staging-only`, and the verifier checks that the scripted answer contains that text. The printed result records this local run. The demo needs no live model, performs no remote writes, and grants no operating authority.
 
 Before connecting a real tool, provide a verified Request Receipt, scoped Tool Definition, approval resolver, effect observations, and an appropriate executor. Review [adapter requirements and limitations](../docs/REFERENCE-IMPLEMENTATION.en.md). Keep unresolved effects blocked; a timeout or a stored checkpoint is not evidence that replay is safe.
 

@@ -23,8 +23,8 @@ governance:
   custodian: repository
 time:
   created_at: '2026-08-03T00:00:00+09:00'
-  observed_at: '2026-11-26T19:43:04.158634+00:00'
-  updated_at: '2026-11-26T19:43:04.158634+00:00'
+  observed_at: '2026-11-26T19:46:05.117578+00:00'
+  updated_at: '2026-11-26T19:46:05.117578+00:00'
   effective_at: '2026-08-03T00:00:00+09:00'
 provenance:
   source_refs:
@@ -42,7 +42,7 @@ validation:
   status: pass
   validator_id: trace-gate.managed-documents
   validator_version: 1.1.0
-  validated_at: '2026-11-26T19:43:04.158634+00:00'
+  validated_at: '2026-11-26T19:46:05.117578+00:00'
   warnings: 0
   failures: 0
 lineage:
@@ -58,7 +58,7 @@ storage:
 freshness:
   mode: event_driven
   status: current
-  evaluated_at: '2026-11-26T19:43:04.158634+00:00'
+  evaluated_at: '2026-11-26T19:46:05.117578+00:00'
   reason: Registered documents are verified against canonical repository content
 access:
   sensitivity: public
@@ -523,7 +523,7 @@ documents:
 - identity:
     artifact_id: DOC.TRACE-GATE.EXAMPLES.README
     artifact_type: markdown_document
-    revision_id: REV.SHA256.3d9cb4c90fb134ce
+    revision_id: REV.SHA256.6b16b581afdf0fd2
     schema_version: 0.2.0
   scope:
     system: trace-gate-framework
@@ -542,8 +542,8 @@ documents:
     custodian: repository
   time:
     created_at: null
-    observed_at: '2026-11-26T19:43:04.158634+00:00'
-    updated_at: '2026-11-26T19:43:04.158634+00:00'
+    observed_at: '2026-11-26T19:46:05.117578+00:00'
+    updated_at: '2026-11-26T19:46:05.117578+00:00'
     effective_at: '2026-08-03T00:00:00+09:00'
   provenance:
     source_refs:
@@ -554,14 +554,14 @@ documents:
     tool_version: trace-gate-framework/1.1.0
   integrity:
     algorithm: sha256
-    sha256: 3d9cb4c90fb134ce29f10c9e16763315e278954214201bb06ce0c48f23810fc8
-    size_bytes: 1697
+    sha256: 6b16b581afdf0fd2653dc0c32aca3837f3ef5b611c26e6aa3dd98250182ed1d4
+    size_bytes: 1733
     signature_status: not_configured
   validation:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-11-26T19:43:04.158634+00:00'
+    validated_at: '2026-11-26T19:46:05.117578+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -579,7 +579,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-11-26T19:43:04.158634+00:00'
+    evaluated_at: '2026-11-26T19:46:05.117578+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
@@ -1122,7 +1122,7 @@ documents:
 - identity:
     artifact_id: DOC.TRACE-GATE.EXAMPLES.KO
     artifact_type: markdown_document
-    revision_id: REV.SHA256.6df4adbdbb02f59d
+    revision_id: REV.SHA256.fbf0809ebbe33936
     schema_version: 0.2.0
   scope:
     system: trace-gate-framework
@@ -1141,8 +1141,8 @@ documents:
     custodian: repository
   time:
     created_at: '2026-11-14T08:29:58.609548+00:00'
-    observed_at: '2026-11-26T19:43:04.158634+00:00'
-    updated_at: '2026-11-26T19:43:04.158634+00:00'
+    observed_at: '2026-11-26T19:46:05.117578+00:00'
+    updated_at: '2026-11-26T19:46:05.117578+00:00'
     effective_at: '2026-11-14T08:29:58.609548+00:00'
   provenance:
     source_refs:
@@ -1159,14 +1159,14 @@ documents:
       scope: translation_of
   integrity:
     algorithm: sha256
-    sha256: 6df4adbdbb02f59dc3c2192c22ff0413c3c362d344e0e7b7b9405f9802f0c761
-    size_bytes: 1828
+    sha256: fbf0809ebbe339363a3381d0bc6ab0251ae40ead836c4e2ff2ad353cf1f7613c
+    size_bytes: 1860
     signature_status: not_configured
   validation:
     status: pass
     validator_id: trace-gate.managed-documents
     validator_version: 1.1.0
-    validated_at: '2026-11-26T19:43:04.158634+00:00'
+    validated_at: '2026-11-26T19:46:05.117578+00:00'
     warnings: 0
     failures: 0
   lineage:
@@ -1184,7 +1184,7 @@ documents:
   freshness:
     mode: event_driven
     status: current
-    evaluated_at: '2026-11-26T19:43:04.158634+00:00'
+    evaluated_at: '2026-11-26T19:46:05.117578+00:00'
     reason: content digest and size match the canonical file
   access:
     sensitivity: public
