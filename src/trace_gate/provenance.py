@@ -10,6 +10,7 @@ import json
 import math
 import re
 from datetime import datetime
+from graphlib import CycleError, TopologicalSorter
 from pathlib import Path
 from typing import Any
 
@@ -41,24 +42,11 @@ def utc(value: str) -> datetime:
     return parsed
 
 
-def _acyclic(pairs: list[tuple[str, str]], code: str) -> None:
-    graph: dict[str, list[str]] = {}
-    for left, right in pairs:
-        graph.setdefault(left, []).append(right)
-    visiting: set[str] = set()
-    visited: set[str] = set()
-    def visit(node: str) -> None:
-        if node in visiting:
-            raise ValueError(code)
-        if node in visited:
-            return
-        visiting.add(node)
-        for child in graph.get(node, []):
-            visit(child)
-        visiting.remove(node)
-        visited.add(node)
-    for node in graph:
-        visit(node)
+def _check_acyclic(graph: TopologicalSorter, code: str) -> None:
+    try:
+        graph.prepare()
+    except CycleError as error:
+        raise ValueError(code) from error
 
 
 def validate_bundle(bundle: dict, *, trusted_reviews: dict | None = None) -> dict:
@@ -100,7 +88,8 @@ def validate_bundle(bundle: dict, *, trusted_reviews: dict | None = None) -> dic
                 raise ValueError("JSON_POINTER_ESCAPE")
     parent: dict[str, str] = {}
     edges = set()
-    acyclic: list[tuple[str, str]] = []
+    structure = TopologicalSorter()
+    lineage = TopologicalSorter()
     for relation in bundle["relations"]:
         left, right, kind = relation["from"], relation["to"], relation["type"]
         key = (left, right, kind)
@@ -111,7 +100,9 @@ def validate_bundle(bundle: dict, *, trusted_reviews: dict | None = None) -> dic
         if a["tenant_id"] != b["tenant_id"]:
             raise ValueError("RELATION_TENANT")
         if kind in {"part_of", "derived_from", "supersedes"}:
-            acyclic.append((left, right))
+            structure.add(left, right)
+        if kind in {"derived_from", "supersedes"}:
+            lineage.add(left, right)
         if kind == "part_of":
             if left in parent or a["kind"] == "source" or b["kind"] not in {"source", "parsed_document", "section", "table", "block"}:
                 raise ValueError("PARENT_DIRECTION")
@@ -133,16 +124,16 @@ def validate_bundle(bundle: dict, *, trusted_reviews: dict | None = None) -> dic
                 raise ValueError("CANDIDATE_REVIEW_REF")
         elif relation["status"] != "structural" or relation["review_ref"] is not None:
             raise ValueError("STRUCTURAL_RELATION_STATE")
-    _acyclic(acyclic, "LINEAGE_CYCLE")
-    next_edges = []
+    _check_acyclic(structure, "LINEAGE_CYCLE")
+    next_edges = TopologicalSorter()
     for left, right, kind in edges:
         if kind == "next":
             if left not in parent or parent.get(left) != parent.get(right):
                 raise ValueError("NEXT_PARENT")
             if entities[left]["ordinal"] is None or entities[right]["ordinal"] != entities[left]["ordinal"] + 1:
                 raise ValueError("NEXT_ORDER")
-            next_edges.append((left, right))
-    _acyclic(next_edges, "NEXT_CYCLE")
+            next_edges.add(right, left)
+    _check_acyclic(next_edges, "NEXT_CYCLE")
     generated: set[str] = set()
     for run in runs.values():
         if utc(run["ended_at"]) < utc(run["started_at"]):
@@ -155,7 +146,13 @@ def validate_bundle(bundle: dict, *, trusted_reviews: dict | None = None) -> dic
             raise ValueError("FAILED_OUTPUT_PROMOTION")
         if len({entities[i]["tenant_id"] for i in run["inputs"] + run["outputs"]}) > 1:
             raise ValueError("RUN_TENANT")
+        # Entity IDs and run IDs occupy separate namespaces.
+        activity = ("run", run["id"])
+        lineage.add(activity, *run["inputs"])
+        for output in run["outputs"]:
+            lineage.add(output, activity)
         generated.update(run["outputs"])
+    _check_acyclic(lineage, "LINEAGE_CYCLE")
     return {"status": "STRUCTURAL_PASS", "bundle_sha256": digest(bundle),
             "entities": len(entities), "relations": len(edges), "runs": len(runs),
             "semantic_truth_verified": False, "access_granted": False}
@@ -195,7 +192,7 @@ def verify_locator(entity: dict, source: dict, raw: bytes) -> dict:
         content = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
     else:
         return {"status": "VISUAL_OR_TABLE_CHECK_REQUIRED", "verified": False}
-    if hashlib.sha256(content).hexdigest() != entity["sha256"]:
+    if len(content) != entity["size_bytes"] or hashlib.sha256(content).hexdigest() != entity["sha256"]:
         raise ValueError("LOCATOR_CONTENT_MISMATCH")
     return {"status": "EXACT_CONTENT_PASS", "verified": True}
 
@@ -243,5 +240,8 @@ def impacted_entities(bundle: dict, changed_ids: set[str], *, trusted_reviews: d
                 affected.add(edge["from"])
             elif edge["type"] in {"supports", "refutes", "limits"} and edge["from"] in affected:
                 affected.add(edge["to"])
+        for run in bundle["runs"]:
+            if not affected.isdisjoint(run["inputs"]):
+                affected.update(run["outputs"])
         if previous == affected:
             return sorted(affected - changed_ids)

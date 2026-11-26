@@ -76,6 +76,36 @@ def test_cycle_rejected(bundle):
         validate_bundle(bundle)
 
 
+def test_lineage_across_runs(bundle):
+    first = bundle["runs"][0]
+    second = dict(first, id="SRC.1", inputs=["BLOCK.1"], outputs=["CHUNK.1"])
+    bundle["relations"] = []
+    bundle["runs"] = [second, first]
+    assert validate_bundle(bundle)["status"] == "STRUCTURAL_PASS"
+    assert impacted_entities(bundle, {"SRC.1"}) == ["BLOCK.1", "CHUNK.1"]
+    first["inputs"] = ["CHUNK.1"]
+    with pytest.raises(ValueError, match="LINEAGE_CYCLE"):
+        validate_bundle(bundle)
+
+
+def test_lineage_cycle_spanning_run_and_relation(bundle):
+    bundle["relations"] = [dict(bundle["relations"][2], **{"from": "SRC.1", "to": "BLOCK.1"})]
+    with pytest.raises(ValueError, match="LINEAGE_CYCLE"):
+        validate_bundle(bundle)
+
+
+def test_run_can_assemble_parent_from_parts(bundle):
+    bundle["runs"][0].update(inputs=["CHUNK.1"], outputs=["BLOCK.1"])
+    assert validate_bundle(bundle)["status"] == "STRUCTURAL_PASS"
+
+
+def test_locator_selected_byte_count(bundle):
+    source, block = bundle["entities"][:2]
+    block["size_bytes"] += 1
+    with pytest.raises(ValueError, match="LOCATOR_CONTENT_MISMATCH"):
+        verify_locator(block, source, RAW)
+
+
 def test_source_content_binding(bundle):
     source, block = bundle["entities"][:2]
     assert verify_locator(block, source, RAW)["verified"]
@@ -90,7 +120,7 @@ def test_json_pointer_exact_and_unicode(bundle):
     source, item = bundle["entities"][:2]
     raw='{"시계열":[{"a/b":123}]}'.encode()
     source.update(sha256=hashlib.sha256(raw).hexdigest(),size_bytes=len(raw))
-    item.update(sha256=hashlib.sha256(b"123").hexdigest())
+    item.update(sha256=hashlib.sha256(b"123").hexdigest(), size_bytes=3)
     item["locator"]={"source_id":source["id"],"source_sha256":source["sha256"],"selector":{"type":"json","pointer":"/시계열/0/a~1b"}}
     assert verify_locator(item, source, raw)["verified"]
 
