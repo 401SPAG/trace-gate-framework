@@ -1,4 +1,7 @@
 from copy import deepcopy
+from pathlib import Path
+import runpy
+from shutil import copyfile
 
 import pytest
 
@@ -46,6 +49,20 @@ def test_manifest_rejects_an_unregistered_markdown_document() -> None:
     errors = managed_document_errors(value, ROOT)
 
     assert any("unregistered managed documents" in error for error in errors)
+
+
+def test_refresh_records_running_tool_version(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    manifest = tmp_path / MANAGED_DOCUMENT_MANIFEST.name
+    copyfile(MANAGED_DOCUMENT_MANIFEST, manifest)
+    monkeypatch.setattr("trace_gate.validation.MANAGED_DOCUMENT_MANIFEST", manifest)
+    monkeypatch.setattr("trace_gate.__version__", "9.8.7")
+
+    refresh = runpy.run_path(str(ROOT / "scripts/update_document_manifest.py"))["main"]
+    assert refresh([]) == 0
+
+    value = load_yaml(manifest)
+    for record in [value, *value["documents"]]:
+        assert record["provenance"]["tool_version"] == "trace-gate-framework/9.8.7"
 
 
 def test_manifest_rejects_stale_content_digest() -> None:
