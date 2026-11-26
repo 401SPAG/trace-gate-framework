@@ -15,6 +15,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from trace_gate import __version__  # noqa: E402
 from trace_gate.validation import (  # noqa: E402
     MANAGED_DOCUMENT_MANIFEST,
     discover_managed_documents,
@@ -49,9 +50,12 @@ def main(argv: list[str] | None = None) -> int:
             details.append(f"remove missing paths: {', '.join(extra)}")
         raise ValueError("; ".join(details))
 
+    tool_version = f"trace-gate-framework/{__version__}"
+    value["provenance"]["tool_version"] = tool_version
     for relative, entry in entries.items():
         content = (ROOT / relative).read_bytes()
         content_hash = hashlib.sha256(content).hexdigest()
+        entry["provenance"]["tool_version"] = tool_version
         entry["identity"]["revision_id"] = f"REV.SHA256.{content_hash[:16]}"
         entry["integrity"]["sha256"] = content_hash
         entry["integrity"]["size_bytes"] = len(content)

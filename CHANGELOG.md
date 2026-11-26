@@ -4,6 +4,8 @@
 
 - Updated the bilingual guides with reproducible Gate and runtime examples. [PR #13](https://github.com/401SPAG/trace-gate-framework/pull/13)
 - Updated checkout to v7.0.1 and setup-python to v7.1.0 for Node.js 24. The workflow tests the Python package on Python 3.12. [PR #14](https://github.com/401SPAG/trace-gate-framework/pull/14)
+- Corrected the Core example to use evaluator 1.1.1 and aligned the TRACE-DM access plan with the receipt template. [PR #15](https://github.com/401SPAG/trace-gate-framework/pull/15)
+- Manifest refreshes now record the running package version. The TRACE-DM migration document's effective date is unconfirmed.
 
 ## Unreleased — Optional DM/AH provenance profile 0.1.0 / package 2.1.0
 
