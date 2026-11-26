@@ -785,7 +785,7 @@ schema_version: "1.1.0"
 gate_id: GATE.STAGE2.PRIMARY
 evaluator:
   id: trace-gate.reference-evaluator
-  version: "1.1.0"
+  version: "1.1.1"
 required:
   success_rate: ">= 99%"
   duplicate_writes: 0
@@ -796,6 +796,8 @@ decision:
   still_forbidden: []
 approved_by: null
 ```
+
+위 예시는 로컬 임계값 평가에 사용하는 최소 정책이다. 운영 증거를 결합하는 평가에는 입력 타입·범위를 지정한 `facts_schema`가 필요하다. [전체 정책 템플릿](../templates/gate-decision.yaml)
 
 `evaluated_at`, `status`, check 결과, evidence reference와 digest는 evaluator가 facts에서 생성한다. 사람이 policy에 `pass`를 직접 기록하지 않는다.
 

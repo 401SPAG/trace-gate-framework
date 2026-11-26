@@ -3,7 +3,7 @@
 - Subframework ID: `TRACE-DM`
 - Version: `0.2.0`
 - Status: `proposed subframework specification`
-- Parent framework: [`polargomz/trace-gate-framework`](https://github.com/polargomz/trace-gate-framework) `1.1.0`
+- Parent framework: [`401SPAG/trace-gate-framework`](https://github.com/401SPAG/trace-gate-framework) `1.1.0`
 - Parent compatibility: TRACE core `1.0.0–1.1.x`
 - Parent axes: `Trace · Restrict · Assemble · Confirm · Elevate`
 - Scope: 문서·원장·증적의 생성, 읽기, 변경, 추적, 보존과 폐기
@@ -434,7 +434,7 @@ TRACE-DM이 책임지는 영역:
 
 TRACE-DM은 AI/LLM의 접근 형태가 아니라 **접근 목적**을 기준으로 문맥을 선별한다. 대화형 인터페이스, CLI, API, 자율 agent 또는 batch processor는 서로 다른 도구여도 같은 목적이라면 동일한 Pre-access Review와 ReadProfile 판정을 받아야 한다.
 
-AI/LLM은 Catalog나 문서 내용을 읽기 전에 다음 접근 의도를 구조화해야 한다.
+AI/LLM은 Catalog나 문서 내용을 읽기 전에 아래 항목으로 접근 목적과 범위를 명시한다. 다음은 논리 필드의 개요다. 제출할 때는 [접근 의도 템플릿](../../templates/document-access-intent.yaml)의 `actor`, `purpose`, `targets`, `constraints` 구조를 사용한다.
 
 ```json
 {
@@ -489,29 +489,24 @@ AI/LLM은 Catalog나 문서 내용을 읽기 전에 다음 접근 의도를 구�
 
 ### 13.3 접근 계획 결과
 
-Pre-access Review는 실제 내용을 반환하기 전에 다음과 같은 `access_plan`을 생성해야 한다.
+Pre-access Review는 실제 내용을 반환하기 전에 접근 계획을 작성한다. 아래 예시에서 문서 ID와 개정 ID는 허용된 대상을 식별한다. 평가 목적과 프로필은 영수증의 `review`에, 평가 시각과 영수증 ID는 최상위 필드에 기록한다. [문서 Gate 영수증 템플릿](../../templates/document-gate-receipt.yaml)
 
 ```json
 {
-  "decision": "allow|allow_reduced|escalate|deny|blocked",
-  "resolved_purpose_class": "lookup",
-  "profile_id": "profile identifier",
+  "decision": "allow",
   "allowed": [
-    {"artifact_id": "stable id", "revision": "revision id", "tier": "summary"}
+    {"artifact_id": "DOC.EXAMPLE", "revision_id": "REV.EXAMPLE.1", "tier": "summary"}
   ],
-  "excluded": [
-    {"artifact_id": "stable id", "reason": "not required for declared purpose"}
-  ],
+  "excluded": [],
   "required_escalations": [],
-  "context_budget_bytes": 0,
+  "context_budget_bytes": 30720,
+  "context_pack_ref": null,
   "semantic_retrieval": {
-    "status": "not_requested|pass|reduced|blocked",
+    "status": "not_requested",
     "embedding_group_ids": [],
     "query_digest": null,
-    "candidate_ref": null
-  },
-  "freshness_evaluated_at": "date-time",
-  "receipt_id": "immutable receipt identifier"
+    "candidate_refs": []
+  }
 }
 ```
 
@@ -718,7 +713,7 @@ stateDiagram-v2
 
 ## 22. `trace-gate-framework` 저장소 패키징 계약
 
-TRACE-DM의 정본 저장소는 [`polargomz/trace-gate-framework`](https://github.com/polargomz/trace-gate-framework)이며 다른 제품·서비스 저장소와 lifecycle을 공유하지 않는다.
+TRACE-DM의 정본 저장소는 [`401SPAG/trace-gate-framework`](https://github.com/401SPAG/trace-gate-framework)이며 다른 제품·서비스 저장소와 lifecycle을 공유하지 않는다.
 
 권장 목표 구조:
 

@@ -40,6 +40,7 @@ python3.12 -m venv .venv
 | `src/trace_gate/migration_io.py` | 공통 no-follow/exclusive I/O·private claim·local stage lock·directory digest |
 | `src/trace_gate/validation.py` | 중복 key, JSON Schema와 semantic validator |
 | `src/trace_gate/gates.py` | 결정적 Gate evaluator와 receipt digest |
+| [근거·계보 스키마](../schemas/provenance.schema.json)와 [검증기](../scripts/validate_provenance.py) | 패키지 2.1.0의 선택적 프로필 0.1.0. 원문 위치, 사용 문맥, 인용과 실행 계보를 오프라인에서 검사한다. |
 | `src/trace_gate/context.py` | 목적 기반 context selection과 prompt envelope |
 | `src/trace_gate/semantic.py` | 선택 그룹 semantic candidate의 provenance·권한·freshness 검증 |
 | `docs/managed-document-manifest.yaml` | 모든 Markdown의 공통 metadata partition manifest |

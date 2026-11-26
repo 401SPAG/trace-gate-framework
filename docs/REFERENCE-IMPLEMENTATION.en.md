@@ -27,6 +27,7 @@ The validator checks duplicate YAML keys, JSON Schema, semantic constraints and 
 | `schemas/document-migration.schema.json` | Optional migration contracts, separate from the document lifecycle |
 | `src/trace_gate/validation.py` | Schema, semantic and document-manifest validation |
 | `src/trace_gate/gates.py` | Deterministic Gate evaluation and bound evidence receipts |
+| [Provenance schema](../schemas/provenance.schema.json) and [validator](../scripts/validate_provenance.py) | Optional profile 0.1.0 in package 2.1.0. Checks source locators, context use, citations, and run lineage offline. |
 | `src/trace_gate/context.py` | Purpose-limited context selection and prompt envelopes |
 | `src/trace_gate/semantic.py` | Optional retrieval-candidate provenance, permission and freshness checks |
 | `src/trace_gate/runtime.py` | Bounded model/tool/verifier loop and checkpoints |
