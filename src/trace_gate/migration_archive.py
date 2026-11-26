@@ -130,7 +130,7 @@ def extract_verified(archive: Path, destination: Path, archive_sha256: str, mani
         require(copy_bounded(source, snapshot, limits.archive_bytes) == archive_sha256, "archive digest mismatch")
         magic = snapshot.read(2); snapshot.seek(0)
         if magic == b"\x1f\x8b":
-            with gzip.GzipFile(fileobj=snapshot) as uncompressed:
+            with gzip.GzipFile(fileobj=snapshot, mode="rb") as uncompressed:
                 copy_bounded(uncompressed, expanded, limits.expanded_bytes)
         else:
             copy_bounded(snapshot, expanded, limits.expanded_bytes)

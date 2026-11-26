@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — Python 3.15 archive compatibility
+
+- Open gzip migration archives in binary read mode. CI now runs the full suite and checks the installed distributions on Python 3.12 and 3.15.
+
 ## Unreleased — Documentation and CI (2026-11-27)
 
 - Updated the bilingual guides with reproducible Gate and runtime examples. [PR #13](https://github.com/401SPAG/trace-gate-framework/pull/13)

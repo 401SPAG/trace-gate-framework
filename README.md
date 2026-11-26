@@ -52,7 +52,7 @@ The single-process reference runtime checks a Python handler’s timeout only af
 
 ## Start locally
 
-Review the [license scope](LICENSING.en.md) before using the software. Package metadata requires Python **3.11+**; use **3.12** to reproduce CI. A Python 3.15 gzip compatibility issue is recorded in the [implementation guide](docs/REFERENCE-IMPLEMENTATION.en.md#1-install-and-inspect). From a repository checkout, use a project virtual environment (POSIX commands):
+Review the [license scope](LICENSING.en.md) before using the software. Package metadata requires Python **3.11+**. CI tests **3.12** and **3.15**. From a repository checkout, create a project virtual environment using the POSIX commands below. For Python 3.15, see the [implementation guide](docs/REFERENCE-IMPLEMENTATION.en.md#1-install-and-inspect).
 
 ```bash
 python3.12 -m venv .venv

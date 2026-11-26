@@ -52,7 +52,7 @@ Core, DM, AH는 한 환경에 함께 배포할 수 있습니다. 검색 결과�
 
 ## 로컬에서 시작하기
 
-사용 전 [라이선스 적용 범위](LICENSING.md)를 확인하십시오. 패키지 메타데이터는 Python **3.11 이상**을 요구하며 CI와 같은 검증에는 **3.12**를 사용합니다. Python 3.15의 gzip 호환성 문제는 [구현 가이드](docs/REFERENCE-IMPLEMENTATION.ko.md#2-설치와-검증)에 기록했습니다. 저장소를 내려받은 디렉터리에서 프로젝트별 가상환경을 사용합니다(POSIX 명령).
+사용 전 [라이선스 적용 범위](LICENSING.md)를 확인하십시오. 패키지 메타데이터는 Python **3.11 이상**을 요구하며 CI는 **3.12**와 **3.15**에서 검증합니다. 저장소를 내려받은 디렉터리에서 아래 POSIX 명령으로 가상환경을 만드십시오. Python 3.15 실행 방법은 [구현 가이드](docs/REFERENCE-IMPLEMENTATION.ko.md#2-설치와-검증)에 있습니다.
 
 ```bash
 python3.12 -m venv .venv
