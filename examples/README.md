@@ -11,7 +11,7 @@ Run these commands from the repository root after completing the README's virtua
   templates/gate-decision.yaml examples/gate-facts.yaml
 ```
 
-The evaluator computes a result and receipt from the policy and synthetic facts. A `pass` result is not operational approval. Evidence references must be authenticated by a trusted resolver in a deployment.
+The [sample facts](gate-facts.yaml) report a 99.5% success rate, zero duplicate writes, zero forbidden changes, and a passing rollback rehearsal. These meet the [policy requirements](../templates/gate-decision.yaml), including the 99% minimum success rate, so the evaluator returns a receipt with status `pass`. In a deployment, a trusted resolver must authenticate the cited evidence and the responsible authority must approve promotion separately.
 
 ## Run a deterministic agent example
 
@@ -19,7 +19,7 @@ The evaluator computes a result and receipt from the policy and synthetic facts.
 .venv/bin/python examples/runtime_demo.py
 ```
 
-The example uses local fixture adapters for the model, tool and verifier. It does not call a live model or perform remote mutations. Inspect the printed result as an illustration of the runtime contract, not a production authorization receipt.
+The [demo](runtime_demo.py) calls the local `status.read` tool for the collector. The tool returns `staging-only`, and the verifier checks that the scripted answer contains that text. The printed result records this local run. The demo needs no live model, performs no remote writes, and grants no operating authority.
 
 Before connecting a real tool, provide a verified Request Receipt, scoped Tool Definition, approval resolver, effect observations, and an appropriate executor. Review [adapter requirements and limitations](../docs/REFERENCE-IMPLEMENTATION.en.md). Keep unresolved effects blocked; a timeout or a stored checkpoint is not evidence that replay is safe.
 

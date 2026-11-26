@@ -2,7 +2,7 @@
 
 **English** | [한국어](README.ko.md) · [Repository home](../README.md)
 
-Start with the repository README for the conceptual architecture, then use the implementation guide and examples to inspect executable contracts. The detailed specifications below are currently in Korean. This English map and usage guide provide entry points, not a claim that all specifications have been translated.
+To run a Gate locally, start with the examples. To see what an adapter must check before granting access or resuming work, follow the DM or AH specification below. The detailed specifications are in Korean. The English usage guide covers installation, adapters, and the limits of the reference implementation.
 
 ## Reading paths
 
@@ -43,8 +43,8 @@ Start with the repository README for the conceptual architecture, then use the i
 
 ## Evidence and maintenance
 
-The [managed-document manifest](managed-document-manifest.yaml) records identities, content-derived revisions, hashes, lineage, freshness, and access metadata. Language counterparts have separate artifact identities; each translation identifies its source through provenance. Updating a translation does not silently revise its source.
+Use the [managed-document manifest](managed-document-manifest.yaml) to find a document’s ID, revision, hash, lineage, freshness, and access metadata. Each translation has its own ID and links to its source, so the two revisions can be checked separately.
 
-The [public hardening record](status/TRACE-GATE-HARDENING-PUBLIC-20261017.json) and [detailed conformance table](REFERENCE-IMPLEMENTATION.ko.md#9-교정-적합성-연결표--2026-10-17) describe synthetic checks and remaining deployment obligations. Read the [changelog](../CHANGELOG.md) for compatibility changes. Preserve old receipts and agreements when updating documents.
+The [October 17 hardening record](status/TRACE-GATE-HARDENING-PUBLIC-20261017.json) reports 422 passing tests for reference package 1.2.0. The [conformance table](REFERENCE-IMPLEMENTATION.ko.md#9-교정-적합성-연결표--2026-10-17) identifies the controls each deployment still has to supply. Consult the [changelog](../CHANGELOG.md) for compatibility changes and preserve earlier receipts and agreements when revising documents.
 
 The [licensing transition](LICENSING-TRANSITION.ko.md) and [1.1 clarification review](LICENSING-REVIEW-1.1.ko.md) are historical Korean records; their text is retained. Current legal texts are linked from the licensing guides.
